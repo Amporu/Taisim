@@ -23,7 +23,7 @@ setup(name='sparkverse',
     classifiers=[
       # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
     ],
-    keywords='wrapper api spacex',
+    keywords='Simulator computer vision Advanced Driving',
     author='Tucudean Adrian-Ionut',
     author_email='phadnisvinay30@gmail.com',
     url='https://github.com/Amporu/SparkVerse',
