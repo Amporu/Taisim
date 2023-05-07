@@ -29,7 +29,7 @@ setup(name='sparkverse',
     package_dir = {'': 'src'},include_package_data=True,
     package_data={'sparkverse':['data/*.png']},
     zip_safe=False,
-    install_requires={"opencv-python","pygame"},
+    install_requires=['opencv-python','pygame'],
     classifiers=[
         "Development Status :: 1 - Planning",
         "Intended Audience :: Developers",
