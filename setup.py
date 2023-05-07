@@ -20,9 +20,6 @@ setup(name='sparkverse',
     version=version,
     description="Simple python3 simulator for advance driving systems",
     long_description= NEWS,
-    classifiers=[
-      # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
-    ],
     keywords='Simulator computer vision Advanced Driving',
     author='Tucudean Adrian-Ionut',
     author_email='phadnisvinay30@gmail.com',
