@@ -1,14 +1,10 @@
-# SpaceX API wrapper in Python
+# Simple Python Simulator for Autonomous Driving Systems based on camera
 <div align="center">
 
 [![GitHub release](https://img.shields.io/github/release/phadnisvinay30/SpaceX-Python.svg)](https://github.com/Amporu/SparkVerse/releases)
 
 
-### Simple and Easy API Wrapper for [r-spacex/SpaceX-API](https://github.com/r-spacex/SpaceX-API)!
 
-<br><br>
-
-</div>
 
 ## Documentation
 This is a python simulator that is best use for autonomous driving systems based on a camera module.
