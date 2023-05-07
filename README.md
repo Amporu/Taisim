@@ -19,7 +19,10 @@ See the [Wiki](https://github.com/phadnisvinay30/SpaceX-Python/wiki) for full wr
 
 ## Installation
 To install via `pip` use:
-`pip install sparkverse`
+'''shell
+`pip install sparkverse`  #python2
+'pip3 install sparkverse' #python3
+'''
 
 ## Basic Usage
 The usage of the wrapper is very easy. It does not require any initialisation. Just import and start coding:
