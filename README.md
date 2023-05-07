@@ -19,8 +19,8 @@ See the [Wiki](https://github.com/phadnisvinay30/SpaceX-Python/wiki) for full wr
 
 ## Installation
 To install via `pip` use:
-'''shell
-`pip install sparkverse`  #python2
+'''console
+`pip install sparkverse` #python2 
 'pip3 install sparkverse' #python3
 '''
 
