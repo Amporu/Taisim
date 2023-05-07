@@ -20,7 +20,7 @@ See the [Wiki](https://github.com/phadnisvinay30/SpaceX-Python/wiki) for full wr
 ## Installation
 To install via `pip` use:
 ```sh
-pip install sparkverse
+pip install sparkverse #Python2.x
 ```
 
 ## Basic Usage
