@@ -1,0 +1,3 @@
+
+include NEWS.txt
+include data/*.png
