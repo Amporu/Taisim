@@ -102,7 +102,7 @@ def move_player(player_car):
 
 
 class Simulator(Utils):
-    TRACK=pygame.image.load("images/LineFollower1.png")
+    TRACK=pygame.image.load(ex.LEVEL1)
     WIDTH, HEIGHT = TRACK.get_width(), TRACK.get_height()
     WIN = pygame.display.set_mode((WIDTH, HEIGHT))#),pygame.NOFRAME | pygame.HIDDEN)
     TITLE=pygame.display.set_caption("Pygame SIMULATOR")
@@ -123,7 +123,7 @@ class Simulator(Utils):
         Simulator.START_POS[0],Simulator.START_POS[1]=x,y
     def setFPS(fps):
         Simulator.FPS=fps
-    def setMap(map=ex.LEVEL_1):
+    def setMap(map=ex.LEVEL1):
         if map==1:
             Simulator.TRACK=pygame.image.load(ex.LEVEL1)
         elif map==2:
