@@ -1,9 +1,0 @@
-LICENSE
-README.md
-setup.py
-sparkverse/__init__.py
-sparkverse/sparkverse.py
-sparkverse.egg-info/PKG-INFO
-sparkverse.egg-info/SOURCES.txt
-sparkverse.egg-info/dependency_links.txt
-sparkverse.egg-info/top_level.txt
