@@ -1,7 +1,9 @@
 import cv2
 import pygame
 import numpy as np
+
 class Utils:
+    """User friendly platform + other esential functions"""
     x,y=0,0
     rotation=0
     speed=0
@@ -14,16 +16,19 @@ class Utils:
 
 
     def blit_rotate_center(win, image, top_left, angle):
+        """rotate images relative to a point """
         rotated_image = pygame.transform.rotate(image, angle)
         #new_rect = rotated_image.get_rect(center=image.get_rect(topleft=top_left).center)
         win.blit(rotated_image, top_left)
 
 
     def blit_text_center(win, font, text):
+        """ add text to pygame image object"""
         render = font.render(text, 1, (200, 200, 200))
         win.blit(render, (win.get_width()/2 - render.get_width() /
                       2, win.get_height()/2 - render.get_height()/2))
     def Display(frame):
+        """opencv lookalike Display function with user friendly helpBar"""
         h,w,c=frame.shape
         image = np.ones((h, w//2, c), dtype=np.uint8)*255
         if HelpBar.show==1:
