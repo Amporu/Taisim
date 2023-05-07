@@ -33,5 +33,5 @@ while(Simulator.isRunning):
   frame,map=Simulator.getCamera() #extract camera and map
   """code here"""
   concatenated=cv2.vconcat([frame,map]) #attach the map and camera frame
-  Simulator.Display(concatenated).      #special display with keyboard input for easy user experience
+  Simulator.Display(concatenated)      #special display with keyboard input for easy user experience
 ```
