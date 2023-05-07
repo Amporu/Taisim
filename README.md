@@ -13,7 +13,7 @@
 </div>
 
 ## Documentation
-This API Wrapper aims to provide a simple and easy way to use the [SpaceX-API](https://github.com/r-spacex/SpaceX-API) in Python projects.
+This is a python simulator that is best use for autonomous driving systems based on a camera module.
 <br>
 See the [Wiki](https://github.com/phadnisvinay30/SpaceX-Python/wiki) for full wrapper documentation.
 
@@ -26,6 +26,6 @@ The usage of the wrapper is very easy. It does not require any initialisation. J
 ```python
 import sparkverse
 
-rocket_data = spacexpython.rockets.falconHeavy()
+sim = sparkverse.simulator.Simulator()
 print(rocket_data)
 ```
