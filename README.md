@@ -24,8 +24,14 @@ To install via `pip` use:
 ## Basic Usage
 The usage of the wrapper is very easy. It does not require any initialisation. Just import and start coding:
 ```python
-import sparkverse
+from sparkverse.simulator import Simulator
+import sparkverse.external_data as ex #contains all maps preinstalled alltoghether with the library
 
-sim = sparkverse.simulator.Simulator()
-print(rocket_data)
+import cv2
+Simulator.setMap(ex.LEVEL1) #set the desired map LEVEL1 to LEVEL7 or input path to image file
+while(Simulator.isRunning):
+  frame,map=Simulator.getCamera() #extract camera and map
+  """code here"""
+  concatenated=cv2.vconcat([frame,map]) #attach the map and camera frame
+  Simulator.Display(concatenated).      #special display with keyboard input for easy user experience
 ```
