@@ -28,7 +28,7 @@ The usage of the wrapper is very easy. It does not require any initialisation. J
 from sparkverse.simulator import Simulator
 import cv2
 
-Simulator.setMap(ex.LEVEL1) #set the desired map LEVEL1 to LEVEL7 or input path to image file
+Simulator.setMap(Simulator.LEVEL1) #set the desired map LEVEL1 to LEVEL7 or input path to image file
 
 while(Simulator.isRunning):
   frame,map=Simulator.getCamera() #extract camera and map
