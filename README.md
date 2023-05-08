@@ -26,10 +26,10 @@ sudo sh install.sh
 The usage of the wrapper is very easy. It does not require any initialisation. Just import and start coding:
 ```python
 from sparkverse.simulator import Simulator
-import sparkverse.external_data as ex #contains all maps preinstalled alltoghether with the library
-
 import cv2
+
 Simulator.setMap(ex.LEVEL1) #set the desired map LEVEL1 to LEVEL7 or input path to image file
+
 while(Simulator.isRunning):
   frame,map=Simulator.getCamera() #extract camera and map
   """code here"""
