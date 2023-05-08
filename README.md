@@ -16,15 +16,9 @@ To install via `pip` use:
 ```sh
 pip install sparkverse #Python2.x
 pip3 install sparkverse #Python3.x
-
-```
-To install the package in <span style="color:red; font-weight:bold;">Linux/MacOS</span>
- 
-```sh
-sudo sh install.sh
 ```
 ## Basic Usage
-The usage of the wrapper is very easy. It does not require any initialisation. Just import and start coding:
+The usage of the package is very easy. It does not require any initialisation. Just import and start coding:
 ```python
 from sparkverse.simulator import Simulator
 import cv2
