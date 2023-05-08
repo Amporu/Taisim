@@ -18,7 +18,8 @@ pip install sparkverse #Python2.x
 pip3 install sparkverse #Python3.x
 
 ```
-To install via running 'install.sh' script
+To install the package in <span style="color:red; font-weight:bold;">Linux/MacOS</span>
+ 
 ```sh
 sudo sh install.sh
 ```
