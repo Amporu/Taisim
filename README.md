@@ -1,6 +1,6 @@
 # Simple Python Simulator for Autonomous Driving Systems based on camera
 
-##Latest Release
+## Latest Release
 [0.0.1](https://github.com/Amporu/SparkVerse/releases)
 
 
