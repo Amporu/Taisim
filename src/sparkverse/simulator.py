@@ -16,66 +16,87 @@ from sparkverse.utils import Utils,HelpBar
 
 PLAYER=pygame.image.load(ex.CAR)
 START_POS = (180, 200)
-class CAR_PROPERTIES:
+class CarProperties:
+    """class for car properties"""
     def __init__(self, max_vel, rotation_vel):
-        self.img = self.IMG
+        """class constructor
+
+        Parameters:
+        max_vel (float): max velocity of the car (default: 1)
+        rotation_vel (float): max velocity of rotation (default: 1)
+        """
+        self.img = PLAYER
         self.max_vel = max_vel
         self.vel = 0
         self.rotation_vel = rotation_vel
         self.angle = 0
-        self.x, self.y = START_POS
+        self.x_value, self.y_value = START_POS
         self.acceleration = 0.1
        
     def rotate(self, left=False, right=False):
+        """function to rotate the car
+
+        Parameters:
+        left (boolean): turn left if true
+        right (boolean): turn right if true 
+        """
         if left:
             self.angle += self.rotation_vel
         elif right:
             self.angle -= self.rotation_vel
         Utils.rotation=self.angle % 360
-
+    
     def draw(self, win):
-        Utils.blit_rotate_center(win, self.img, (self.x, self.y), self.angle)
+        """function to draw images
+        Parameters:
+        win (pygameobj): imput window
+        """
+        Utils.blit_rotate_center(win, self.img, (self.x_value, self.y_value), self.angle)
 
     def move_forward(self):
+        """function to translate the car forward"""
         self.vel = min(self.vel + self.acceleration, self.max_vel)
         Utils.speed=self.vel
         self.move()
 
     def move_backward(self):
+        """function to translate the car forward"""
         self.vel = max(self.vel - self.acceleration, -self.max_vel/2)
         Utils.speed=self.vel
         self.move()
 
     def move(self):
+        """function to move and rotate the car"""
         radians = math.radians(self.angle)
         vertical = math.cos(radians) * self.vel
         horizontal = math.sin(radians) * self.vel
 
-        self.y -= vertical
-        self.x -= horizontal
+        self.y_value -= vertical
+        self.x_value -= horizontal
 
     def collide(self, mask, x=0, y=0):
+        """colide method"""
         car_mask = pygame.mask.from_surface(self.img)
-        offset = (int(self.x - x), int(self.y - y))
+        offset = (int(self.x_value - x), int(self.y_value - y))
         poi = mask.overlap(car_mask, offset)
         return poi
 
     def reset(self):
-        self.x, self.y = self.START_POS
+        """reset method"""
+        self.x_value, self.y_value = START_POS
         self.angle = 0
         self.vel = 0
-
-
-class PlayerCar(CAR_PROPERTIES):
+class PlayerCar(CarProperties):
+    """Player car class"""
     IMG = PLAYER
-    
-
+    @classmethod
     def reduce_speed(self):
+        """function to reduce speed"""
         self.vel = max(self.vel - self.acceleration / 2, 0)
         self.move()
 
-    
 def draw(win, player_car,background):
+    """function to draw character and background"""
     
 
 
@@ -108,8 +129,8 @@ def move_player(player_car):
     if not moved:
         player_car.reduce_speed()
 
-
 class Simulator(Utils):
+    """simulator class"""
     TRACK=pygame.image.load(ex.LEVEL1)
     WIDTH, HEIGHT = TRACK.get_width(), TRACK.get_height()
     WIN = pygame.display.set_mode((WIDTH, HEIGHT))#),pygame.NOFRAME | pygame.HIDDEN)
@@ -122,16 +143,24 @@ class Simulator(Utils):
     Pos=[]
     START_POS = (180, 200)
     FPS=30
-    def hideSimulatorWindow():
+    
+    @staticmethod
+    def hide_simulator_window():
+        """this function hids the pygame simulator window"""
         Simulator.WIN = pygame.display.set_mode((Simulator.WIDTH, Simulator.HEIGHT),pygame.NOFRAME | pygame.HIDDEN)
 
-    def getPos():
+    @staticmethod
+    def getpos():
         return Simulator.START_POS
-    def setPos(x,y):
+    
+    @staticmethod
+    def setpos(x,y):
         Simulator.START_POS[0],Simulator.START_POS[1]=x,y
-    def setFPS(fps):
+    @staticmethod
+    def setfps(fps):
         Simulator.FPS=fps
-    def setMap(map=ex.LEVEL1):
+    @staticmethod
+    def setmap(map=ex.LEVEL1):
         if map==1:
             Simulator.TRACK=pygame.image.load(ex.LEVEL1)
         elif map==2:

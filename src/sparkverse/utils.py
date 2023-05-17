@@ -11,7 +11,17 @@ import pygame
 import numpy as np
 
 class Utils:
-    """a class where i dump yet non categorizable functions"""
+    """a class where i dump yet non categorizable functions
+
+    Parameters:
+    rotation (int): car rotation
+    speed (float): car speed
+    x (int): car x position
+    y (int): car y position
+    description (string[]): HelpBar description
+    keys (string[]): HelpBar keys
+    """
+    
     x,y=0,0
     rotation=0
     speed=0
@@ -91,6 +101,7 @@ class HelpBar:
         frame (Mat): simulator frame
         image (Mat): blank HelpBar frame
         """
+        
         cv2.putText(img=image,text="HelpBar",org=(10, 20),fontFace=Utils.font,fontScale=1,color=(9,0,0),thickness=2)#pylint: disable=E1101
         for i in range(end=len(Utils.keys)):
             cv2.rectangle(img=image,pt1=(10,30+i*40),pt2=(40,60+i*40),color=(255,0,0),thickness=3)#pylint: disable=E1101
