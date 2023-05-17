@@ -7,7 +7,7 @@
 
 
 ## Documentation
-This is a python simulator that is best used for autonomous driving systems based on a camera module.
+Currently the package has a pydoc addaptation.
 <br>
 
 
