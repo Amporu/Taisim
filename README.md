@@ -1,7 +1,7 @@
 # Simple Python Simulator for Autonomous Driving Systems based on camera
 
-
-[![GitHub release](https://img.shields.io/github/release/phadnisvinay30/SpaceX-Python.svg)](https://github.com/Amporu/SparkVerse/releases)
+##Latest Release
+[0.0.1](https://github.com/Amporu/SparkVerse/releases)
 
 
 
