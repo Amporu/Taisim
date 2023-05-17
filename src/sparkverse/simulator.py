@@ -1,11 +1,19 @@
-import os
-import sparkverse.external_data as ex
-from sparkverse.utils import Utils,HelpBar
+"""
+info:This module contains the implememntation of the SparkVerse Simulator
+autor: Tucudean Adrian-Ionut
+date: 17.05.2023
+email: Tucudean.Adrian.Ionut@outlook.com
+license: MIT
+"""
+import math
+import time
 import pygame
 import numpy as np
 import cv2
-import math
-import time 
+import sparkverse.external_data as ex
+from sparkverse.utils import Utils,HelpBar
+
+
 PLAYER=pygame.image.load(ex.CAR)
 START_POS = (180, 200)
 class CAR_PROPERTIES:
