@@ -11,7 +11,7 @@ import pygame
 import numpy as np
 import cv2
 import sparkverse.external_data as ex
-from sparkverse.utils import Utils,HelpBar
+from sparkverse.utils import Utils,HelpBar,SensorBar
 
 
 PLAYER=pygame.image.load(ex.CAR)
@@ -89,7 +89,7 @@ class CarProperties:
 class PlayerCar(CarProperties):
     """Player car class"""
     IMG = PLAYER
-    @classmethod
+    #@classmethod
     def reduce_speed(self):
         """function to reduce speed"""
         self.vel = max(self.vel - self.acceleration / 2, 0)
@@ -106,28 +106,7 @@ def draw(win, player_car,background):
     pygame.display.update()
 
 
-def move_player(player_car):
-    keys = pygame.key.get_pressed()
-    moved = False
-    if keys[pygame.K_q]:
-        pygame.quit()
-    if keys[pygame.K_h]:
-        HelpBar.show=HelpBar.show^1
-        time.sleep(0.5)
-        #print(HelpBar.show)
-    if keys[pygame.K_a]:
-        player_car.rotate(left=True)
-    if keys[pygame.K_d]:
-        player_car.rotate(right=True)
-    if keys[pygame.K_w]:
-        moved = True
-        player_car.move_forward()
-    if keys[pygame.K_s]:
-        moved = True
-        player_car.move_backward()
 
-    if not moved:
-        player_car.reduce_speed()
 
 class Simulator(Utils):
     """simulator class"""
@@ -194,13 +173,13 @@ class Simulator(Utils):
         angle=Simulator.player_car.angle
         angle=angle%360
         #print(angle)
-        move_player(Simulator.player_car)
+        Utils.move_player(Simulator.player_car)
         frame = pygame.surfarray.array3d(pygame.display.get_surface())
         frame=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
         frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
         frame=cv2.flip(frame,1)
         h,w=frame.shape[0],frame.shape[1]
-        x,y=int(Simulator.player_car.x),int(Simulator.player_car.y)
+        x,y=int(Simulator.player_car.x_value),int(Simulator.player_car.y_value)
         Utils.x,Utils.y=x,y
         x=x+4
         
@@ -292,16 +271,8 @@ class Simulator(Utils):
         frame1=frame[tl_rect_y:br_rect_y,tl_rect_x:br_rect_x]
         height, width = frame1.shape[:2]
         center = (width / 2, height / 2)
-        if len(Simulator.Pos)>=100:
-            Simulator.Pos.pop(0)
-        else:
-            if len(Simulator.Pos)>0 and (Simulator.Pos[-1][0]!=int(Simulator.player_car.x)or (Simulator.Pos[-1][0]<Simulator.player_car.x+1 and Simulator.Pos[-1][0]>Simulator.player_car.x-1)) and (Simulator.Pos[-1][1]!=int(Simulator.player_car.y)or (Simulator.Pos[-1][0]<Simulator.player_car.y+1 and Simulator.Pos[-1][0]>Simulator.player_car.y-1)):
-                Simulator.Pos.append((int(Simulator.player_car.x),int(Simulator.player_car.y)))
-        
-            if len(Simulator.Pos)==0:
-                Simulator.Pos.append((int(Simulator.player_car.x),int(Simulator.player_car.y)))
-        for i in range(len(Simulator.Pos)):
-            cv2.circle(mask,Simulator.Pos[i],3,(0,255,0),1)
+        if HelpBar.trail_flag==1:
+            HelpBar.enable_trail(Simulator.player_car,mask)
         #print(len(Pos))
     # cv2.circle(mask,(player_car.x,player_car.y),3,(0,255,0),1,)
         M = cv2.getRotationMatrix2D(center, -angle, 1.0)
