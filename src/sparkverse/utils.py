@@ -5,6 +5,7 @@ date: 17.05.2023
 email: Tucudean.Adrian.Ionut@outlook.com
 license: MIT
 """
+
 import time
 import cv2
 import pygame
@@ -97,13 +98,12 @@ class Utils(Video):
         """
         if Utils.recorded==1:
             Utils.start_time=time.time()
-            Utils.video_writer = cv2.VideoWriter(Utils.output_file, Utils.fourcc, Utils.fps, (frame.shape[1],frame.shape[0]))
+            Utils.video_writer = cv2.VideoWriter(Utils.output_file,Utils.fourcc, Utils.fps,(frame.shape[1],frame.shape[0]))
             Utils.recorded=-1
         if Utils.recorded==-1:
             Utils.video_writer.write(frame)
             Utils.end_time=time.time()
             Utils.delta_time=Utils.end_time-Utils.start_time
-            
         height,width,channels=frame.shape
         help_image = np.ones((height, width//2, channels), dtype=np.uint8)*255
         sensor_image = np.ones((height, width//2, channels), dtype=np.uint8)*255
@@ -167,7 +167,7 @@ class Utils(Video):
             player_car.reduce_speed()
 class HelpBar:
     """class for controlling HelpBar menu"""
-    show = 0
+    show = 1
     last_key=-1
     trail_flag=0
     Trail=[]
@@ -181,8 +181,8 @@ class HelpBar:
                 HelpBar.Trail.append((int(player_car.x_value),int(player_car.y_value)))
             if len(HelpBar.Trail)==0:
                 HelpBar.Trail.append((int(player_car.x_value),int(player_car.y_value)))
-        for i in range(len(HelpBar.Trail)):#pylint: disable=C0200
-            cv2.circle(img=mask,center=HelpBar.Trail[i],radius=3,color=(0,255,0),thickness=1) #pylint: disable=C0200
+        for i in range(0,len(HelpBar.Trail),1):
+            cv2.circle(img=mask,center=HelpBar.Trail[i],radius=3,color=(0,255,0),thickness=1) 
     @staticmethod
     def showpannel(frame,image):
         """
@@ -194,9 +194,9 @@ class HelpBar:
         """
         
         cv2.putText(img=image,text="HelpBar",org=(12, 20),fontFace=Utils.font,fontScale=0.8,color=(9,0,0),thickness=2)#pylint: disable=E1101
-        for i in range(len(Utils.keys)):
-            if HelpBar.last_key==i:
-                if i!=2:
+        for i in range(len(Utils.keys)):# pylint: disable=C0200
+            if (HelpBar.last_key==i):
+                if (i!=2):
                     cv2.rectangle(img=image,pt1=(10,30+i*40),pt2=(40,60+i*40),color=(0,255,0),thickness=3)#pylint: disable=E1101
                     cv2.putText(img=image,text=Utils.keys[i],org=(20,50+i*40),fontFace=Utils.font,fontScale=0.5,color=(0,255,0),thickness=2)#pylint: disable=E1101
                     cv2.putText(img=image,text=Utils.description[i],org=(50,50+i*40),fontFace=Utils.font,fontScale=0.5,color=(0,255,0),thickness=2)#pylint: disable=E1101
@@ -206,7 +206,7 @@ class HelpBar:
                     cv2.putText(img=image,text=Utils.keys[i],org=(20,50+i*40),fontFace=Utils.font,fontScale=0.5,color=(0,0,255),thickness=2)#pylint: disable=E1101
                     cv2.putText(img=image,text=Utils.description[i],org=(50,50+i*40),fontFace=Utils.font,fontScale=0.5,color=(0,0,255),thickness=2)#pylint: disable=E1101
             if HelpBar.trail_flag==1 and i==7:
-                cv2.rectangle(img=image,pt1=(40,60+i*40),pt2=(230,30+i*40),color=(0,0,0),thickness=-1)
+                cv2.rectangle(img=image,pt1=(40,60+i*40),pt2=(230,30+i*40),color=(0,0,0),thickness=-1)#pylint: disable=E1101
                 cv2.putText(img=image,text=Utils.description[i],org=(50,50+i*40),fontFace=Utils.font,fontScale=0.5,color=(0,255,0),thickness=2)#pylint: disable=E1101
             if Utils.recorded==-1:
                     minutes = int(Utils.delta_time // 60)
@@ -228,7 +228,7 @@ class HelpBar:
         
 class SensorBar:
     """class to manage sensors"""
-    show=0
+    show=1
     last_key=-1
     trail_flag=0
     
@@ -242,7 +242,7 @@ class SensorBar:
         image (Mat): blank HelpBar frame
         """
         
-        cv2.putText(img=image,text="SensorBar",org=(10, 20),fontFace=Utils.font,fontScale=1,color=(9,0,0),thickness=2)
+        cv2.putText(img=image,text="SensorBar",org=(10, 20),fontFace=Utils.font,fontScale=1,color=(9,0,0),thickness=2)#pylint: disable= E1101
         frame=cv2.hconcat([image,frame])#pylint: disable=E1101
         return frame
     
