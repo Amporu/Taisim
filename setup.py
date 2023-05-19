@@ -27,7 +27,7 @@ setup(name='sparkverse',
     license='MIT',
     packages=find_packages('src','src/sparkverse/data'),
     package_dir = {'': 'src'},include_package_data=True,
-    package_data={'sparkverse':['data/*.png']},
+    package_data={'sparkverse':['data/*.png',"*.py"]},
     zip_safe=False,
     install_requires=['opencv-python','pygame'],
     classifiers=[

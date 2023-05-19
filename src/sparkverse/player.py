@@ -1,9 +1,15 @@
+"""info:This is a the player module for our simulator
+autor: Tucudean Adrian-Ionut
+date: 20.05.2023
+email: Tucudean.Adrian.Ionut@outlook.com
+license: MIT
+"""
 
 import math
 import pygame
 import sparkverse.external_data as ex
 from sparkverse.utils import Utils
-
+#pylint: disable=C0303
 PLAYER=pygame.image.load(ex.CAR)
 START_POS = (180, 200)
 class CarProperties:
@@ -41,14 +47,23 @@ class CarProperties:
         Parameters:
         win (pygameobj): imput window
         """
-        Utils.blit_rotate_center(win, self.img, (self.x_value, self.y_value), self.angle)
+        Utils.blit_rotate_center(win, self.img, (self.x_value-4, self.y_value-2), self.angle)
 
     def move_forward(self):
         """function to translate the car forward"""
         self.vel = min(self.vel + self.acceleration, self.max_vel)
         Utils.speed=self.vel
         self.move()
-
+    def bounce_back(self):
+        """function to bounce the car back"""
+        self.vel = min(self.vel - self.acceleration*4, self.max_vel/2)
+        Utils.speed=self.vel
+        self.move()
+    def bounce_forward(self):
+        """function to bounce the car forward"""
+        self.vel = min(self.vel + self.acceleration*4, self.max_vel)
+        Utils.speed=self.vel
+        self.move()
     def move_backward(self):
         """function to translate the car forward"""
         self.vel = max(self.vel - self.acceleration, -self.max_vel/2)
