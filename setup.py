@@ -6,7 +6,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 NEWS = open(os.path.join(here, 'NEWS.txt')).read()
 
 
-version = '0.0.5'
+version = '0.0.2'
 
 install_requires = [
     # List your project dependencies here.
@@ -27,7 +27,7 @@ setup(name='sparkverse',
     license='MIT',
     packages=find_packages('src','src/sparkverse/data'),
     package_dir = {'': 'src'},include_package_data=True,
-    package_data={'sparkverse':['data/*.png']},
+    package_data={'sparkverse':['data/*.png',"*.py"]},
     zip_safe=False,
     install_requires=['opencv-python','pygame'],
     classifiers=[
