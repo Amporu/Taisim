@@ -42,15 +42,10 @@ Simulator.hide_simulator_window()
 Simulator.track(1) # add your "image_path.png" or use our default maps from 1 to 7
 cam=Camera(Simulator.data,90)
 lidar=Lidar(Simulator.data,0,30)
-#cam2=Camera(Simulator.data,270)
 while Simulator.isRunning :
     frame=cam.read() #extract camera and map
     frame1=cam1.read()
     lidar1=lidar.read()
-    #print(frame1.shape)
-    #frame2=cam2.read()
-    #cv2.imshow("frame1",frame1)
-    #cv2.imshow("frame",frame)
     Simulator.display()
 ```
 ## Simulator Examples
