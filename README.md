@@ -35,18 +35,32 @@ pip3 install sparkverse #Python3.x
 ## Basic Usage
 The usage of the package is very easy. It does not require any initialisation. Just import and start coding:
 ```python
-import cv2
+"""
+info:This is a simple example on starting the simulator
+autor: Tucudean Adrian-Ionut
+date: 19.05.2023
+email: Tucudean.Adrian.Ionut@outlook.com
+license: MIT
+"""
+#pylint disable E0401
+#pylint disableE0611
 from sparkverse.simulator import Simulator
 from sparkverse.sensor import Camera,Lidar
-Simulator.hide_simulator_window()
-Simulator.track(1) # add your "image_path.png" or use our default maps from 1 to 7
-cam=Camera(Simulator.data,90)
-lidar=Lidar(Simulator.data,0,30)
+import sparkverse.external_data as ex
+Simulator.hide_simulator_window()  #hide pygame window if you want
+Simulator.track(ex.LEVEL1)   #select maps ranging from LEVEL1 to LEVEL 7 
+                             #or just imput path to your png file
+CAM=Camera(simulator=Simulator.data,angle=90)  #camera object initialized
+CAM1=Camera(simulator=Simulator.data,angle=0)
+LIDAR=Lidar(simulator=Simulator.data,angle=0,angular_resolution=50)
+
+
 while Simulator.isRunning :
-    frame=cam.read() #extract camera and map
-    frame1=cam1.read()
-    lidar1=lidar.read()
-    Simulator.display()
+    frame=CAM.read() #extract camera 
+    frame1=CAM1.read() #extract seccond camera
+    lidar1=LIDAR.read() #extract lidar measurement
+    """ your code here"""
+    Simulator.display() #display everything
 ```
 ## Simulator Examples
 SparkVerse is suitable for a range of computer vision applications, including but not limited to:
