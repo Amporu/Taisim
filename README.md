@@ -1,4 +1,4 @@
-# Simple Python Simulator for Autonomous Driving Systems based on camera
+![base_logo_transparent_background](https://github.com/Amporu/SparkVerse/assets/109149566/ae904844-298e-433e-bbcf-b5c0032cd01f)
 
 SparkVerse is a Python-based simulator designed for testing and developing computer vision applications. With a primary focus on autonomous driving systems that rely on virtual sensor inputs, it provides a versatile platform for a variety of tasks, from lane keeping to complex navigation in agricultural environments.
 
