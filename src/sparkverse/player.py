@@ -59,6 +59,8 @@ class CarProperties:
         self.vel = min(self.vel - self.acceleration*4, self.max_vel/2)
         Utils.speed=self.vel
         self.move()
+    def bounce(self):
+        self.angle=abs(180-self.angle)
     def bounce_forward(self):
         """function to bounce the car forward"""
         self.vel = min(self.vel + self.acceleration*4, self.max_vel)

@@ -11,7 +11,9 @@ import cv2
 import pygame
 import numpy as np
 #pylint: disable=E1101
+#pylint: disable=C0303
 from sparkverse.gui.help_bar import HelpBar
+from sparkverse.gui.sensor_bar import SensorBar
 from sparkverse.components.video import Video
 class Utils():
     """a class where i dump yet non categorizable functions
@@ -24,11 +26,34 @@ class Utils():
     description (string[]): HelpBar description
     keys (string[]): HelpBar keys
     """
+    sensor_frames = np.zeros((9,) + (480,640,3), dtype=np.uint8)
+    first_window = np.ones((480, 640, 3), dtype=np.uint8)*255
+    font = cv2.FONT_HERSHEY_SIMPLEX   #pylint: disable=E1101
+    cv2.rectangle(first_window[0],(0,0),(200,50),(255,255,255),-1)
+    cv2.rectangle(first_window,(0,0),(200,50),(255,0,0),5)
+    cv2.putText(img=first_window,
+    text="Welcome Window",org=(20,20),fontFace=font,fontScale=0.5,color=(0,0,0),thickness=2)#pylint: disable=E1101
+    cv2.putText(img=first_window,text="SparkVerse Simulator",org=(250,30),fontFace=font,fontScale=0.7,color=(255,0,0),thickness=2)#pylint: disable=E1101
+    cv2.putText(img=first_window,
+    text="Select to display sensor by pressing keys [1] -> [9]",org=(20,100),fontFace=font,fontScale=0.6,color=(0,0,255),thickness=2)#pylint: disable=E1101
+    cv2.putText(img=first_window,
+    text="dependecies: OpenCV, NumPy, Pygame",org=(20,380),fontFace=font,fontScale=0.6,color=(0,0,0),thickness=2)#pylint: disable=E1101
+    cv2.putText(img=first_window,
+    text="author: Tucudean Adrian-Ionut",org=(20,400),fontFace=font,fontScale=0.6,color=(0,0,0),thickness=2)#pylint: disable=E1101
+    cv2.putText(img=first_window,
+    text="email: Tucudean.Adrian.Ionut@outlook.com",org=(20,420),fontFace=font,fontScale=0.6,color=(0,0,0),thickness=2)#pylint: disable=E1101
+    cv2.putText(img=first_window,
+    text="github: https://github.com/Amporu/SparkVerse",org=(20,440),fontFace=font,fontScale=0.6,color=(0,0,255),thickness=2)#pylint: disable=E1101
+    
+    sensor_frames[0]=first_window
+    sensor_frames[0]=first_window
+    sensor_frames[0]=first_window
+    sensor_frames[0]=first_window
     mask=np.array([])
     x,y=0,0
     rotation=0
     speed=0
-    font = cv2.FONT_HERSHEY_SIMPLEX   #pylint: disable=E1101
+    
     
     @staticmethod
     def draw(win, player_car,background):
@@ -81,19 +106,16 @@ class Utils():
         win.blit(render, (win.get_width()/2 - render.get_width() /
                       2, win.get_height()/2 - render.get_height()/2))
     @staticmethod
-    def display(frame=None):
-        """Special Display for our sensors"""
-        mask=Utils.mask.copy()
-        #if (not frame.any()):
-            #frame=np.ones((mask.shape[0], mask.shape[1], mask.shape[2]), dtype=np.uint8)*255
-            #cv2.putText(img=frame,text="No Sensor Input",org=(50,frame.shape[0]//2),fontFace=Utils.font,fontScale=2,color=(0,0,255),thickness=4)#pylint: disable=E1101
-        concatenated=cv2.vconcat([frame,mask])
+    def display():
         """
         HelpBar display
 
         Parameters:
         frame (Mat): input frame
         """
+        frame=Utils.sensor_frames[SensorBar.last_key].copy()
+        mask=Utils.mask.copy()
+        concatenated=cv2.vconcat([frame,mask])
         if Video.recorded==1:
             Video.start_time=time.time()
             Video.video_writer = cv2.VideoWriter(Video.output_file,Video.fourcc, Video.fps,(frame.shape[1],frame.shape[0]))
@@ -118,6 +140,19 @@ class Utils():
         """key input for player car"""
         keys = pygame.key.get_pressed()
         moved = False
+        num_keys=[pygame.K_1,
+                  pygame.K_2,
+                  pygame.K_3,
+                  pygame.K_4,
+                  pygame.K_5,
+                  pygame.K_6,
+                  pygame.K_7,
+                  pygame.K_8,
+                  pygame.K_9]
+        for i in range(len(num_keys)):
+            if keys[num_keys[i]]:#pylint: disable=E1101
+                SensorBar.last_key=i+1
+                time.sleep(0.5)
         if keys[pygame.K_q]:#pylint: disable=E1101
             HelpBar.last_key=0
             pygame.quit()#pylint: disable=E1101
@@ -163,38 +198,3 @@ class Utils():
             #video_writer = cv2.VideoWriter(output_file, fourcc, fps, frame_size)
         if not moved:
             player_car.reduce_speed()
-
-class SensorBar:
-    """class to manage sensors"""
-    show=1
-    last_key=-1
-    trail_flag=0
-
-    selected_sensor=0
-    sensor_count=0
-    sensor_description=[]
-    sensor_key=[]
-    
-    @staticmethod
-    def showpannel(frame,image):
-        """
-        SensorBar Bar GUI
-        
-        Parameters:
-        frame (Mat): simulator frame
-        image (Mat): blank HelpBar frame
-        """
-        
-        cv2.putText(img=image,text="SensorBar",org=(10, 20),fontFace=Utils.font,fontScale=1,color=(9,0,0),thickness=2)#pylint: disable= E1101
-        if SensorBar.sensor_count>0:
-            for i in range(SensorBar.sensor_count+1):
-                cv2.rectangle(img=image,pt1=(10,30+i*40),pt2=(40,60+i*40),color=(0,0,0),thickness=3)#pylint: disable=E1101
-                cv2.putText(img=image,text=SensorBar.sensor_key[i],org=(20,50+i*40),fontFace=Utils.font,fontScale=0.5,color=(0,0,0),thickness=2)#pylint: disable=E1101
-                cv2.putText(img=image,text=SensorBar.sensor_description[i],org=(50,50+i*40),fontFace=Utils.font,fontScale=0.5,color=(0,0,0),thickness=2)#pylint: disable=E1101
-        elif SensorBar.sensor_count==0:
-                cv2.rectangle(img=image,pt1=(10,30),pt2=(40,60),color=(0,0,0),thickness=3)#pylint: disable=E1101
-                cv2.putText(img=image,text=SensorBar.sensor_key[0],org=(20,50),fontFace=Utils.font,fontScale=0.5,color=(0,0,0),thickness=2)#pylint: disable=E1101
-                cv2.putText(img=image,text=SensorBar.sensor_description[0],org=(50,50),fontFace=Utils.font,fontScale=0.5,color=(0,0,0),thickness=2)#pylint: disable=E1101
-        frame=cv2.hconcat([image,frame])#pylint: disable=E1101
-        return frame
-    
