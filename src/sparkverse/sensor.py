@@ -39,7 +39,7 @@ class VirtualSensor:
         self.win=win
         self.fps=fps
         self.track=track
-        
+        self.rotated_img=np.array([])
 class Camera(VirtualSensor):
     """ class for camera handling"""
     
@@ -206,14 +206,6 @@ class Lidar(VirtualSensor):
         frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
         frame=cv2.flip(frame,1)
         Utils.x,Utils.y=int(self.player.x_value),int(self.player.y_value)
-        x_1 = int(self.player.x_value + 20 * math.cos(math.radians(self.angle+angle+180)))
-        y_1 = int(self.player.y_value - 20 * math.sin(math.radians(self.angle+angle+180)))
-        x_2 = int(self.player.x_value + 20 * math.cos(math.radians(self.angle+angle)))
-        y_2 = int(self.player.y_value - 20 * math.sin(math.radians(self.angle+angle)))
-        x_3 = int(self.player.x_value + 60 * math.cos(math.radians(self.angle+angle+130)))
-        y_3 = int(self.player.y_value - 60 * math.sin(math.radians(self.angle+angle+130)))
-        x_4 = int(self.player.x_value + 60 * math.cos(math.radians(self.angle+angle+50)))
-        y_4 = int(self.player.y_value - 60 * math.sin(math.radians(self.angle+angle+50)))
         lines=[]
         step=360/self.angular_resolution
         for i in range(self.angular_resolution):
@@ -237,7 +229,7 @@ class Lidar(VirtualSensor):
         #for i in range(self.angular_resolution):
             x_lid=0
             y_lid=0
-            ok=0
+            ok_flag=0
             for j in range(1000):
                 x_lid=int(x_p1 + j * math.cos(math.radians(lines[i])))
                 y_lid=int(y_p1 + j * math.sin(math.radians(lines[i])))
@@ -245,22 +237,17 @@ class Lidar(VirtualSensor):
                 if (mask_gray[y_lid][x_lid]==0) and x_lid>10 and x_lid<mask_gray.shape[1]-10 and y_lid>10 and y_lid<mask_gray.shape[0]-10:
                     distance=distance+1
                 else:
-                    ok=1
+                    ok_flag=1
                     x_lidar.append(x_lid)
                     y_lidar.append(y_lid)
                     lidar_distance.append(distance)
                     break
-            if ok==0:
+            if ok_flag==0:
                 x_lidar.append(x_lid)
                 y_lidar.append(y_lid)
                 lidar_distance.append(distance)
-                
-        #print(y_lidar)
-        #print(x_lidar)
-        #print(lines)
         if self.sensor_count==0:
             Utils.mask = frame.copy()
-        #print(lidar_distance)
         for i in range(self.angular_resolution):
             cv2.line(Utils.mask,(x_p[i],y_p[i]),(x_lidar[i],y_lidar[i]),(0,255,0),1)
         

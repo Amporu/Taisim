@@ -1,10 +1,18 @@
+"""
+info:This module contains the help-bar related functions
+autor: Tucudean Adrian-Ionut
+date: 17.05.2023
+email: Tucudean.Adrian.Ionut@outlook.com
+license: MIT
+"""
 import cv2
 #pylint: disable=E1101
+#pylint: disable=C0301
 from ..components.video import Video
 class HelpBar():
     """class for controlling HelpBar menu"""
     keys=["Q","H","R","W","A","S","D","T"]
-    description=["Quit","Hide/Show",  #pylint: disable=C0301
+    description=["Quit","Hide/Show",  
                  "Reccord",
                  "Move Forward",
                  "Rotate Left",
@@ -32,7 +40,6 @@ class HelpBar():
     def showpannel(frame,image,x,y,rotation,accel):
         """
         Help Bar GUI
-
         Parameters:
         frame (Mat): simulator frame
         image (Mat): blank HelpBar frame
@@ -54,11 +61,11 @@ class HelpBar():
                 cv2.rectangle(img=image,pt1=(40,60+i*40),pt2=(230,30+i*40),color=(0,0,0),thickness=-1)#pylint: disable=E1101
                 cv2.putText(img=image,text=HelpBar.description[i],org=(50,50+i*40),fontFace=HelpBar.font,fontScale=0.5,color=(0,255,0),thickness=2)#pylint: disable=E1101
             if Video.recorded==-1:
-                    minutes = int(Video.delta_time // 60)
-                    seconds = int(Video.delta_time % 60)
-                    cv2.putText(img=image,text=str(minutes)+"' "+str(seconds)+"''",org=(50,50+80),fontFace=HelpBar.font,fontScale=0.5,color=(0,0,255),thickness=2)#pylint: disable=E1101
-                    cv2.circle(img=image,center=(25,125),radius=10,color=(0,0,255),thickness=-1)#pylint: disable=E1101
-                    cv2.rectangle(img=image,pt1=(10,30+80),pt2=(40,60+80),color=(0,0,255),thickness=3)
+                minutes = int(Video.delta_time // 60)
+                seconds = int(Video.delta_time % 60)
+                cv2.putText(img=image,text=str(minutes)+"' "+str(seconds)+"''",org=(50,50+80),fontFace=HelpBar.font,fontScale=0.5,color=(0,0,255),thickness=2)#pylint: disable=E1101
+                cv2.circle(img=image,center=(25,125),radius=10,color=(0,0,255),thickness=-1)#pylint: disable=E1101
+                cv2.rectangle(img=image,pt1=(10,30+80),pt2=(40,60+80),color=(0,0,255),thickness=3)
         cv2.putText(img=image,text="Car PROPERTIES",org=(10,380),fontFace=HelpBar.font,fontScale=1,color=(0,0,0),thickness=2)#pylint: disable=E1101
         cv2.rectangle(img=image,pt1=(10,400),pt2=(310,700),color=(255,0,255),thickness=2)#pylint: disable=E1101
         cv2.putText(img=image,text="Position",org=(30,430),fontFace=HelpBar.font,fontScale=0.5,color=(255,0,0),thickness=2)#pylint: disable=E1101
