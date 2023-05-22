@@ -24,7 +24,9 @@ SparkVerse is a Python-based simulator designed for testing and developing compu
 <a href="https://github.com/Amporu/SparkVerse/releases">
     <img src="https://img.shields.io/badge/0%20.%200-.%203-blueviolet">
 
-
+## Dependencies
+  * OpenCV
+  * Pygame
 
 ## Key Features
 
