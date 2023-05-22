@@ -1,9 +1,35 @@
+<p align="center">
+<a href="https://www.linkedin.com/in/adrian-ionuț-țucudean/">
+    <img src="https://img.shields.io/badge/-LinkedIn-blue">
+</a>
+<a href="mailto:Tucudean.Adrian.Ionut@outlook.com">
+    <img src="https://img.shields.io/badge/-Email-darkgreen?style=flat-square&logo=#0078D4&logoColor=black">
+</a>
+
+<a href="https://pypi.org/user/TucuAI/">
+    <img src="https://img.shields.io/badge/PyPi-TucuAI-blueviolet">
+</a>
+
+<br/> 
+
+<!-- <a href="https://github.com/Amporu">
+    <img src="https://github-readme-stats.vercel.app/api?username=drkostas&show_icons=true&count_private=true&show_icons=true&hide_border=true&hide_title=true&card_width=300px&hide_rank=true&bg_color=00000000&theme=dracula">
+</a> -->
+
+<a href="https://github.com/Amporu">
+    <img src="https://github-stats-alpha.vercel.app/api?username=Amporu&cc=22272e&tc=37BCF6&ic=fff&bc=0000">
+</a>
+
+</p>
+
 ![base_logo_transparent_background](https://github.com/Amporu/SparkVerse/assets/109149566/ae904844-298e-433e-bbcf-b5c0032cd01f)
 
 SparkVerse is a Python-based simulator designed for testing and developing computer vision applications. With a primary focus on autonomous driving systems that rely on virtual sensor inputs, it provides a versatile platform for a variety of tasks, from lane keeping to complex navigation in agricultural environments.
 
 ## Latest Release
-[0.0.3](https://github.com/Amporu/SparkVerse/releases)
+<a href="https://github.com/Amporu/SparkVerse/releases">
+    <img src="https://img.shields.io/badge/0%20.%200-.%203-blueviolet">
+
 
 
 ## Key Features
@@ -62,6 +88,7 @@ while Simulator.isRunning :
     """ your code here"""
     Simulator.display() #display everything
 ```
+![Alt Text](path/to/your/gif/image.gif)
 ## Simulator Examples
 SparkVerse is suitable for a range of computer vision applications, including but not limited to:
 
