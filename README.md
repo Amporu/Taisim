@@ -1,5 +1,5 @@
 <p align="center">
-<a href="https://www.linkedin.com/in/adrian-ionuț-țucudean-37aa59244/">
+<a href="https://www.linkedin.com/in/adrian-ionu%C8%9B-%C8%9Bucudean-37aa59244">
     <img src="https://img.shields.io/badge/-LinkedIn-blue">
 </a>
 <a href="mailto:Tucudean.Adrian.Ionut@outlook.com">
