@@ -62,6 +62,7 @@ while Simulator.isRunning :
     """ your code here"""
     Simulator.display() #display everything
 ```
+![base_logo_transparent_background](/assets/demo.gif)
 ## Simulator Examples
 SparkVerse is suitable for a range of computer vision applications, including but not limited to:
 
