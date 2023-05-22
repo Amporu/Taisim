@@ -1,5 +1,5 @@
 <p align="center">
-<a href="https://www.linkedin.com/in/adrian-ionuț-țucudean/">
+<a href="https://www.linkedin.com/in/adrian-ionuț-țucudean-37aa59244/">
     <img src="https://img.shields.io/badge/-LinkedIn-blue">
 </a>
 <a href="mailto:Tucudean.Adrian.Ionut@outlook.com">
@@ -11,14 +11,8 @@
 </a>
 
 <br/> 
-##  Contribuitors
-<!-- <a href="https://github.com/Amporu">
-    <img src="https://github-readme-stats.vercel.app/api?username=drkostas&show_icons=true&count_private=true&show_icons=true&hide_border=true&hide_title=true&card_width=300px&hide_rank=true&bg_color=00000000&theme=dracula">
-</a> -->
 
-<a href="https://github.com/Amporu">
-    <img src="https://github-stats-alpha.vercel.app/api?username=Amporu&cc=22272e&tc=37BCF6&ic=fff&bc=0000">
-</a>
+
 
 </p>
 
