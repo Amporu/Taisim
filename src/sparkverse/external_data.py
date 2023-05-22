@@ -1,4 +1,10 @@
-
+"""
+info:This module the path to external non python files 
+autor: Tucudean Adrian-Ionut
+date: 22.05.2023
+email: Tucudean.Adrian.Ionut@outlook.com
+license: MIT
+"""
 import os
 CAR    = os.path.join(os.path.dirname(__file__), 'data/player.png')
 LEVEL1 = os.path.join(os.path.dirname(__file__), 'data/LineFollower1.png')

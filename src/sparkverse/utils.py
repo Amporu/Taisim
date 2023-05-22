@@ -11,7 +11,7 @@ import cv2
 import pygame
 import numpy as np
 #pylint: disable=E1101
-#pylint: disable=C0303
+
 from sparkverse.gui.help_bar import HelpBar
 from sparkverse.gui.sensor_bar import SensorBar
 from sparkverse.components.video import Video
@@ -82,14 +82,14 @@ class Utils:
                 color=(0,0,255),
                 thickness=2)
     """
-    
+
     sensor_frames[0]=image
     mask=np.array([])
     x,y=0,0
     rotation=0
     speed=0
-    
-    
+
+
     @staticmethod
     def draw(win, player_car,background):
         """function to draw character and background"""
@@ -151,20 +151,30 @@ class Utils:
         frame=Utils.sensor_frames[SensorBar.last_key].copy()
         mask=Utils.mask.copy()
         concatenated=cv2.vconcat([frame,mask])
-        
+
         height,width,channels=concatenated.shape
         help_image = np.ones((height, width//2, channels), dtype=np.uint8)*255
         sensor_image = np.ones((height, width//2, channels), dtype=np.uint8)*255
         if HelpBar.show==1 and SensorBar.show==0:
-            concatenated=HelpBar.showpannel(concatenated,help_image,Utils.x,Utils.y,Utils.rotation,Utils.speed)
+            concatenated=HelpBar.showpannel(concatenated,
+                                            help_image,
+                                            Utils.x,
+                                            Utils.y,
+                                            Utils.rotation,
+                                            Utils.speed)
         if HelpBar.show==1 and SensorBar.show==1:
-            concatenated=HelpBar.showpannel(concatenated,help_image,Utils.x,Utils.y,Utils.rotation,Utils.speed)
+            concatenated=HelpBar.showpannel(concatenated,
+                                            help_image,
+                                            Utils.x,
+                                            Utils.y,
+                                            Utils.rotation,
+                                            Utils.speed)
             concatenated=SensorBar.showpannel(concatenated,sensor_image)
         if HelpBar.show==0 and SensorBar.show==1:
             concatenated=SensorBar.showpannel(concatenated,sensor_image)
         if Video.recorded==1:
             Video.start_time=time.time()
-            
+
             Video.video_writer = cv2.VideoWriter(Video.output_file,
                                                 Video.fourcc,
                                                 Video.fps,
@@ -233,7 +243,7 @@ class Utils:
             Video.video_writer.release()
             Video.recorded=0
             Video.end_time=time.time()
-            
+
 
             #video_writer = cv2.VideoWriter(output_file, fourcc, fps, frame_size)
         if not moved:
