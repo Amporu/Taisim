@@ -39,7 +39,7 @@ SparkVerse is a Python-based simulator designed for testing and developing compu
 ### Custom Map Imports: 
 In addition to default maps, SparkVerse allows for the import of custom maps. This flexibility facilitates testing across diverse environments and scenarios.
 ```python
-Simulator.initMap("path_to_your_image.png")
+Simulator.track("path_to_your_image.png")
 ```
 ### Optimized & CrossPlatform: 
 Efficient performance on single-core computers makes SparkVerse accessible to a wide range of users and potentially suitable for real-time applications or embedded systems.
