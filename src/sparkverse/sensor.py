@@ -12,40 +12,46 @@ import pygame
 import numpy as np
 from sparkverse.utils import Utils,SensorBar
 from sparkverse.gui.help_bar import HelpBar
-
+from sparkverse.simulator import Simulator
+from sparkverse.components.log import logger
 class VirtualSensor:
     """class to generalize sensors we use"""
     mask=np.array([])
     mask_flag=0
     sensor_count=0
-    def __init__(self,win,xval,yval,clock,flag,fps,track,angle):
+    def __init__(self,simulator,title,angle,sensor_type):
         """class constructor
         Parameters:
         x (int): x position of the car centroid
         y (int): y position of the car centroid
         angle (int): angle of the sensor (0 means front of the car)
         """
+        
+        if(sensor_type==1):
+            logger.info("virtual sensor <\033[38;2;255;165;0m%s\033[0m> added as \033[94mCAMERA\033[0m ",title)
+        if(sensor_type==2):
+            logger.info("virtual sensor <\033[38;2;255;165;0m%s\033[0m> added as \033[94mLIDAR\033[0m ",title)
         self.sensor_count=VirtualSensor.sensor_count
         SensorBar.sensor_count=self.sensor_count
-        SensorBar.sensor_description.append("cam"+str(self.sensor_count))
+        SensorBar.sensor_description.append(title)
         SensorBar.sensor_key.append(str(self.sensor_count+1))
         VirtualSensor.sensor_count=VirtualSensor.sensor_count+1
-        self.clock=clock
-        self.flag=flag
-        self.pos_x=xval
-        self.pos_y=yval
+        self.clock=simulator[2]
+        self.flag=simulator[3]
+        self.pos_x=simulator[1].x_value
+        self.pos_y=simulator[1].y_value
         self.angle=angle
-        self.win=win
-        self.fps=fps
-        self.track=track
+        self.win=simulator[0]
+        self.fps=simulator[4]
+        self.track=simulator[5]
         self.rotated_img=np.array([])
 class Camera(VirtualSensor):
     """ class for camera handling"""
 
-    def __init__(self,simulator, angle=0,hfov=45,vfov=60):
+    def __init__(self,title="camera", angle=0):
         """
         info:camera class constructor
-
+        
         Parameters:
         simulator (Simulator obj): simulator obj for pygame operations
         angle (int): sensor angle perspective
@@ -53,17 +59,11 @@ class Camera(VirtualSensor):
         vfov (int): vertical FoV
         player (PlayerCar obj): to get data from the car
         """
-        super().__init__(win=simulator()[0],
-                         xval=simulator()[1].x_value,
-                         yval=simulator()[1].y_value,
-                         clock=simulator()[2],
-                         flag=simulator()[3],
-                         fps=simulator()[4],
-                         track=simulator()[5],
-                         angle=angle)
-        self.hfov=hfov
-        self.vfov=vfov
-        self.player=simulator()[1]
+        sim=Simulator.data()
+
+        super().__init__(simulator=sim,title=title,angle=angle,sensor_type=1)
+
+        self.player=sim[1]
 
     def read(self):
         """function to read camera data
@@ -208,17 +208,11 @@ class Camera(VirtualSensor):
 
 class Lidar(VirtualSensor):
     """class for lidar handling"""
-    def __init__(self,simulator,angle=0,angular_resolution=10):
+    def __init__(self,title="Lidar",angle=0,angular_resolution=10):
+        sim=Simulator.data()
         """ class constructor"""
-        super().__init__(win=simulator()[0],
-                         xval=simulator()[1].x_value,
-                         yval=simulator()[1].y_value,
-                         clock=simulator()[2],
-                         flag=simulator()[3],
-                         fps=simulator()[4],
-                         track=simulator()[5],
-                         angle=angle)
-        self.player=simulator()[1]
+        super().__init__(simulator=sim,title=title,angle=angle,sensor_type=2)
+        self.player=sim[1]
         self.angular_resolution=angular_resolution
     def read(self):
         """function to read lidar data
@@ -287,4 +281,5 @@ class Lidar(VirtualSensor):
             Utils.mask = frame.copy()
         for i in range(self.angular_resolution):
             cv2.line(Utils.mask,(x_p[i],y_p[i]),(x_lidar[i],y_lidar[i]),(0,255,0),1)
+        return lidar_distance,lines
         

@@ -9,6 +9,7 @@ import math
 import pygame
 import sparkverse.external_data as ex
 from sparkverse.utils import Utils
+from sparkverse.components.log import logger
 PLAYER=pygame.image.load(ex.CAR)
 START_POS = (180, 200)
 class CarProperties:
@@ -28,6 +29,7 @@ class CarProperties:
         self.x_value, self.y_value = START_POS
         self.acceleration = 0.1
 
+        logger.info("CAR : \033[92mOK\033[0m")
     def rotate(self, left=False, right=False):
         """function to rotate the car
 

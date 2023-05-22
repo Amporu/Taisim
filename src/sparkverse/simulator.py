@@ -9,10 +9,12 @@ import pygame
 import sparkverse.external_data as ex
 import sparkverse.player as pl
 from sparkverse.utils import Utils
+from sparkverse.components.log import logger
 #pylint: disable=E1101
 
 class Simulator(Utils):
     """simulator class"""
+    logger.info("TRACK PRESET : \033[92mLEVEL1\033[0m")
     TRACK=pygame.image.load(ex.LEVEL1)
     WIDTH, HEIGHT = TRACK.get_width(), TRACK.get_height()
     WIN = pygame.display.set_mode((WIDTH, HEIGHT))#),pygame.NOFRAME | pygame.HIDDEN)
@@ -36,6 +38,7 @@ class Simulator(Utils):
     @staticmethod
     def hide_simulator_window():
         """this function hids the pygame simulator window"""
+        logger.info("SIMULATOR WINDOW SET : \033[92mHIDDEN\033[0m")
         Simulator.WIN = pygame.display.set_mode((Simulator.WIDTH,
                                                  Simulator.HEIGHT),
                                                  pygame.NOFRAME | pygame.HIDDEN)
@@ -47,20 +50,28 @@ class Simulator(Utils):
     def track(track_image=ex.LEVEL1):
         """set the track """
         if track_image==1:
+            logger.info("TRACK SET : \033[92mLEVEL1\033[0m")
             Simulator.TRACK=pygame.image.load(ex.LEVEL1)
         elif track_image==2:
+            logger.info("TRACK SET : \033[92mLEVEL2\033[0m")
             Simulator.TRACK=pygame.image.load(ex.LEVEL2)#
         elif track_image==3:
+            logger.info("TRACK SET : \033[92mLEVEL3\033[0m")
             Simulator.TRACK=pygame.image.load(ex.LEVEL3)
         elif track_image==4:
+            logger.info("TRACK SET : \033[92mLEVEL4\033[0m")
             Simulator.TRACK=pygame.image.load(ex.LEVEL4)
         elif track_image==5:
+            logger.info("TRACK SET : \033[92mLEVEL5\033[0m")
             Simulator.TRACK=pygame.image.load(ex.LEVEL5)
         elif track_image==6:
+            logger.info("TRACK SET: \033[92mLEVEL6\033[0m")
             Simulator.TRACK=pygame.image.load(ex.LEVEL6)
         elif track_image==7:
+            logger.info("TRACK SET : \033[92mLEVEL7\033[0m")
             Simulator.TRACK=pygame.image.load(ex.LEVEL7)
         else:
+            logger.info("TRACK SET : \033[92m%s\033[0m",track_image)
             Simulator.TRACK=pygame.image.load(track_image)
     @staticmethod
     def start():

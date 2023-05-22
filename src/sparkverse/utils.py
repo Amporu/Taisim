@@ -16,6 +16,7 @@ from sparkverse.gui.help_bar import HelpBar
 from sparkverse.gui.sensor_bar import SensorBar
 from sparkverse.components.video import Video
 import sparkverse.external_data as ex
+from sparkverse.components.log import logger
 class Utils:
     """a class where i dump yet non categorizable functions
 
@@ -31,7 +32,7 @@ class Utils:
     first_window = np.ones((480, 640, 3), dtype=np.uint8)*255
     image=cv2.imread(ex.LOGO)
 
-    print(image.shape)
+    #print(image.shape)
     image=cv2.resize(image,(640,480),cv2.INTER_AREA)
     font = cv2.FONT_HERSHEY_SIMPLEX   #pylint: disable=E1101
     """
@@ -202,6 +203,7 @@ class Utils:
         for i ,key in enumerate(num_keys):
             if keys[key]:
                 SensorBar.last_key=i+1
+                logger.info("<\033[38;2;255;165;0m%s\033[0m> : \033[92mSELECTED\033[0m",SensorBar.sensor_description[i])
                 time.sleep(0.5)
         if keys[pygame.K_q]:#pylint: disable=E1101
             HelpBar.last_key=0
@@ -210,16 +212,33 @@ class Utils:
             HelpBar.last_key=2
             time.sleep(0.5)
             Video.reccording_flag=Video.reccording_flag^1
+            if Video.reccording_flag==1:
+                logger.info("RECCORDING : \033[92mENABLED\033[0m")
+            else:
+                logger.info("RECCORDING : \033[91mDISABLED\033[0m")
         if keys[pygame.K_t]:#pylint: disable=E1101
             HelpBar.last_key=7
+            
             HelpBar.trail_flag=HelpBar.trail_flag^1
+            if (HelpBar.trail_flag==1):
+                logger.info("TRAIL : \033[92mENABLED\033[0m")
+            else:
+                logger.info("TRAIL : \033[91mDISABLED\033[0m")
             time.sleep(0.5)
         if keys[pygame.K_h]:#pylint: disable=E1101
             HelpBar.last_key=1
             HelpBar.show=HelpBar.show^1
+            if HelpBar.show==1:
+                logger.info("HELP BAR : \033[92mVISIBLE\033[0m")
+            else:
+                logger.info("HELP BAR : \033[91mHIDDEN\033[0m")
             time.sleep(0.5)
         if keys[pygame.K_e]:#pylint: disable=E1101
             SensorBar.show=SensorBar.show^1
+            if SensorBar.show==1:
+                logger.info("SENSOR BAR : \033[92mVISIBLE\033[0m")
+            else:
+                logger.info("SENSOR BAR : \033[91mHIDDEN\033[0m")
             time.sleep(0.5)
             #print(HelpBar.show)
         if keys[pygame.K_a]:#pylint: disable=E1101
