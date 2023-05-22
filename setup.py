@@ -6,7 +6,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 NEWS = open(os.path.join(here, 'NEWS.txt')).read()
 
 
-version = '0.0.2'
+version = '0.0.3'
 
 install_requires = [
     # List your project dependencies here.
