@@ -21,9 +21,18 @@
 SparkVerse is a Python-based simulator designed for testing and developing computer vision applications. With a primary focus on autonomous driving systems that rely on virtual sensor inputs, it provides a versatile platform for a variety of tasks, from lane keeping to complex navigation in agricultural environments.
 
 ## Latest Release
+
+<p align="center">
+    
+[![Downloads](http://pepy.tech/badge/sparkverse)](http://pepy.tech/project/sparkverse)
+    
 <a href="https://github.com/Amporu/SparkVerse/releases">
     <img src="https://img.shields.io/badge/0%20.%200-.%203-blueviolet">
-
+ 
+<br/> 
+    
+</p>
+    
 ## Dependencies
   * OpenCV
   * Pygame
