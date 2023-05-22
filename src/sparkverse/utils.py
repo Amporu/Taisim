@@ -30,8 +30,9 @@ class Utils:
     sensor_frames = np.zeros((9,) + (480,640,3), dtype=np.uint8)
     first_window = np.ones((480, 640, 3), dtype=np.uint8)*255
     image=cv2.imread(ex.LOGO)
-    #print(image.shape)
-    #image=cv2.resize(image,(640,480),cv2.INTER_AREA)
+
+    print(image.shape)
+    image=cv2.resize(image,(640,480),cv2.INTER_AREA)
     font = cv2.FONT_HERSHEY_SIMPLEX   #pylint: disable=E1101
     """
     cv2.rectangle(first_window[0],(0,0),(200,50),(255,255,255),-1)
@@ -82,7 +83,7 @@ class Utils:
                 thickness=2)
     """
     
-    sensor_frames[0]=first_window
+    sensor_frames[0]=image
     mask=np.array([])
     x,y=0,0
     rotation=0
