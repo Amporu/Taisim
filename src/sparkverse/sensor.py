@@ -5,15 +5,14 @@ date: 19.05.2023
 email: Tucudean.Adrian.Ionut@outlook.com
 license: MIT
 """
-#pylint: disable=C0301
+#pylint: disable=E1101
 import math
 import cv2
 import pygame
 import numpy as np
 from sparkverse.utils import Utils,SensorBar
 from sparkverse.gui.help_bar import HelpBar
-#pylint: disable=E1101
-#pylint: disable=C0303
+
 class VirtualSensor:
     """class to generalize sensors we use"""
     mask=np.array([])
@@ -42,7 +41,7 @@ class VirtualSensor:
         self.rotated_img=np.array([])
 class Camera(VirtualSensor):
     """ class for camera handling"""
-    
+
     def __init__(self,simulator, angle=0,hfov=45,vfov=60):
         """
         info:camera class constructor
@@ -65,7 +64,7 @@ class Camera(VirtualSensor):
         self.hfov=hfov
         self.vfov=vfov
         self.player=simulator()[1]
-    
+
     def read(self):
         """function to read camera data
         Returns: 
@@ -83,7 +82,7 @@ class Camera(VirtualSensor):
         angle=angle%360
         Utils.move_player(self.player)
         frame = pygame.surfarray.array3d(pygame.display.get_surface())
-        frame=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB) 
+        frame=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
         frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
         frame=cv2.flip(frame,1)
         Utils.x,Utils.y=int(self.player.x_value),int(self.player.y_value)
@@ -115,18 +114,34 @@ class Camera(VirtualSensor):
             bottom_right = sorted_points[2]
         if self.sensor_count==0:
             Utils.mask = frame.copy()
-            
+
         min_x = min(top_left[0], top_right[0], bottom_left[0], bottom_right[0])
         max_x = max(top_left[0], top_right[0], bottom_left[0], bottom_right[0])
         min_y = min(top_left[1], top_right[1], bottom_left[1], bottom_right[1])
         max_y = max(top_left[1], top_right[1], bottom_left[1], bottom_right[1])
         if min_x < 10 or max_x > 630 or min_y<10 or max_y>470:
             self.player.bounce_back()
-        cv2.line(Utils.mask,(int(bottom_left[0]),int(bottom_left[1])),(int(bottom_right[0]),int(bottom_right[1])),(255,255,255),2)
-        cv2.line(Utils.mask,(int(bottom_right[0]),int(bottom_right[1])),(int(top_right[0]),int(top_right[1])),(255,255,255),2)
-        cv2.line(Utils.mask,(int(top_right[0]),int(top_right[1])),(int(top_left[0]),int(top_left[1])),(255,255,255),2)
-        cv2.line(Utils.mask,(int(top_left[0]),int(top_left[1])),(int(bottom_left[0]),int(bottom_left[1])),(255,255,255),2)
-        
+        cv2.line(img=Utils.mask,
+                 pt1=(int(bottom_left[0]),int(bottom_left[1])),
+                 pt2=(int(bottom_right[0]),int(bottom_right[1])),
+                 color=(255,255,255),
+                 thickness=2)
+        cv2.line(img=Utils.mask,
+                 pt1=(int(bottom_right[0]),int(bottom_right[1])),
+                 pt2=(int(top_right[0]),int(top_right[1])),
+                 color=(255,255,255),
+                 thickness=2)
+        cv2.line(img=Utils.mask,
+                 pt1=(int(top_right[0]),int(top_right[1])),
+                 pt2=(int(top_left[0]),int(top_left[1])),
+                 color=(255,255,255),
+                 thickness=2)
+        cv2.line(img=Utils.mask,
+                 pt1=(int(top_left[0]),int(top_left[1])),
+                 pt2=(int(bottom_left[0]),int(bottom_left[1])),
+                 color=(255,255,255),
+                 thickness=2)
+
         tl_rect_x=min((top_left[0],bottom_left[0]))
         tl_rect_y=min((top_left[1],top_right[1]))
         br_rect_x=max((top_right[0],bottom_right[0]))
@@ -149,11 +164,26 @@ class Camera(VirtualSensor):
             cv2.circle(Utils.mask,(tl_rect_x,br_rect_y),5,(0,255,0),1)
             cv2.circle(Utils.mask,(br_rect_x,tl_rect_y),5,(0,255,255),1)
             cv2.circle(Utils.mask,(br_rect_x,br_rect_y),5,(0,0,255),1)
-            cv2.line(Utils.mask,(int(bottom_left[0]),int(bottom_left[1])),(tl_rect_x,br_rect_y),(0,255,0),2,cv2.LINE_AA)
-            cv2.line(Utils.mask,(int(bottom_right[0]),int(bottom_right[1])),(br_rect_x,br_rect_y),(0,0,255),2,cv2.LINE_AA)
-            cv2.line(Utils.mask,(int(top_right[0]),int(top_right[1])),(br_rect_x,tl_rect_y),(0,255,255),2,cv2.LINE_AA)
-            cv2.line(Utils.mask,(int(top_left[0]),int(top_left[1])),(tl_rect_x,tl_rect_y),(255,255,0),2,cv2.LINE_AA)
-            
+            cv2.line(img=Utils.mask,
+                     pt1=(int(bottom_left[0]),int(bottom_left[1])),
+                     pt2=(tl_rect_x,br_rect_y),
+                     color=(0,255,0),thickness=2)
+            cv2.line(img=Utils.mask,
+                     pt1=(int(bottom_right[0]),int(bottom_right[1])),
+                     pt2=(br_rect_x,br_rect_y),
+                     color=(0,0,255),
+                     thickness=2)
+            cv2.line(img=Utils.mask,
+                     pt1=(int(top_right[0]),int(top_right[1])),
+                     pt2=(br_rect_x,tl_rect_y),
+                     color=(0,255,255),
+                     thickness=2)
+            cv2.line(img=Utils.mask,
+                     pt1=(int(top_left[0]),int(top_left[1])),
+                     pt2=(tl_rect_x,tl_rect_y),
+                     color=(255,255,0),
+                     thickness=2)
+
         frame1=frame[tl_rect_y:br_rect_y,tl_rect_x:br_rect_x]
         height, width = frame1.shape[:2]
         center = (width / 2, height / 2)
@@ -167,7 +197,12 @@ class Camera(VirtualSensor):
         cv2.rectangle(self.rotated_img,(0,0),(200,50),(255,255,255),-1)
         cv2.rectangle(self.rotated_img,(0,0),(200,50),(255,0,0),5)
         cv2.putText(img=self.rotated_img,
-                    text=str(SensorBar.sensor_description[self.sensor_count]),org=(20,20),fontFace=Utils.font,fontScale=0.5,color=(0,0,0),thickness=2)#pylint: disable=E1101
+                    text=str(SensorBar.sensor_description[self.sensor_count]),
+                    org=(20,20),
+                    fontFace=Utils.font,
+                    fontScale=0.5,
+                    color=(0,0,0),
+                    thickness=2)
         Utils.sensor_frames[self.sensor_count+1]=self.rotated_img
         return self.rotated_img
 
@@ -202,7 +237,7 @@ class Lidar(VirtualSensor):
         angle=angle%360
         Utils.move_player(self.player)
         frame = pygame.surfarray.array3d(pygame.display.get_surface())
-        frame=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB) 
+        frame=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
         frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
         frame=cv2.flip(frame,1)
         Utils.x,Utils.y=int(self.player.x_value),int(self.player.y_value)
@@ -233,8 +268,10 @@ class Lidar(VirtualSensor):
             for j in range(1000):
                 x_lid=int(x_p1 + j * math.cos(math.radians(lines[i])))
                 y_lid=int(y_p1 + j * math.sin(math.radians(lines[i])))
-                
-                if (mask_gray[y_lid][x_lid]==0) and x_lid>10 and x_lid<mask_gray.shape[1]-10 and y_lid>10 and y_lid<mask_gray.shape[0]-10:
+
+                if ((mask_gray[y_lid][x_lid]==0) and x_lid>10 and
+                    x_lid<mask_gray.shape[1]-10 and y_lid>10
+                    and y_lid<mask_gray.shape[0]-10):
                     distance=distance+1
                 else:
                     ok_flag=1

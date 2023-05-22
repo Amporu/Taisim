@@ -9,7 +9,6 @@ import math
 import pygame
 import sparkverse.external_data as ex
 from sparkverse.utils import Utils
-#pylint: disable=C0303
 PLAYER=pygame.image.load(ex.CAR)
 START_POS = (180, 200)
 class CarProperties:
@@ -28,7 +27,7 @@ class CarProperties:
         self.angle = 0
         self.x_value, self.y_value = START_POS
         self.acceleration = 0.1
-       
+
     def rotate(self, left=False, right=False):
         """function to rotate the car
 
@@ -41,7 +40,7 @@ class CarProperties:
         elif right:
             self.angle -= self.rotation_vel
         Utils.rotation=self.angle % 360
-    
+
     def draw(self, win):
         """function to draw images
         Parameters:
@@ -59,7 +58,9 @@ class CarProperties:
         self.vel = min(self.vel - self.acceleration*4, self.max_vel/2)
         Utils.speed=self.vel
         self.move()
+
     def bounce(self):
+        """function to bounce the car in the oposite direction"""
         self.angle=abs(180-self.angle)
     def bounce_forward(self):
         """function to bounce the car forward"""
@@ -81,10 +82,10 @@ class CarProperties:
         self.y_value -= vertical
         self.x_value -= horizontal
 
-    def collide(self, mask, x=0, y=0):
+    def collide(self, mask, xpos=0, ypos=0):
         """colide method"""
         car_mask = pygame.mask.from_surface(self.img)
-        offset = (int(self.x_value - x), int(self.y_value - y))
+        offset = (int(self.x_value - xpos), int(self.y_value - ypos))
         poi = mask.overlap(car_mask, offset)
         return poi
 
@@ -104,10 +105,6 @@ class PlayerCar(CarProperties):
 
 def draw(win, player_car,background):
     """function to draw character and background"""
-    
-
-
     win.blit(background,(0,0))
     player_car.draw(win)
-    
     pygame.display.update()
