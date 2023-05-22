@@ -25,7 +25,8 @@ class CarProperties:
         self.vel = 0
         self.rotation_vel = rotation_vel
         self.angle = 0
-        self.x_value, self.y_value = START_POS
+        self.x_value,
+        self.y_value = START_POS
         self.acceleration = 0.1
 
     def rotate(self, left=False, right=False):

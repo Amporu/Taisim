@@ -14,6 +14,7 @@ from sparkverse.utils import Utils,SensorBar
 from sparkverse.gui.help_bar import HelpBar
 
 class VirtualSensor:
+
     """class to generalize sensors we use"""
     mask=np.array([])
     mask_flag=0
@@ -268,7 +269,6 @@ class Lidar(VirtualSensor):
             for j in range(1000):
                 x_lid=int(x_p1 + j * math.cos(math.radians(lines[i])))
                 y_lid=int(y_p1 + j * math.sin(math.radians(lines[i])))
-
                 if ((mask_gray[y_lid][x_lid]==0) and x_lid>10 and
                     x_lid<mask_gray.shape[1]-10 and y_lid>10
                     and y_lid<mask_gray.shape[0]-10):
