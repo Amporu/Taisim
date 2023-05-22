@@ -53,9 +53,12 @@ Simulator.track("path_to_your_image.png")
 ### Optimized & CrossPlatform: 
 Efficient performance on single-core computers makes SparkVerse accessible to a wide range of users and potentially suitable for real-time applications or embedded systems.
 Soo far was tested on:
-  * Linux 
-  * Windows 10&11
-  * MacOS
+
+[![Linux](https://img.shields.io/badge/linux-black?style=for-the-badge&logo=Linux)](https://github.com/Amporu)
+    
+[![Windows](https://img.shields.io/badge/Windows-black?style=for-the-badge&logo=Windows)](https://github.com/Amporu)
+    
+[![MacOS](https://img.shields.io/badge/MacOS-black?style=for-the-badge&logo=MacOS)](https://github.com/Amporu)
 
 ## Installation
 To install via `pip` use:
