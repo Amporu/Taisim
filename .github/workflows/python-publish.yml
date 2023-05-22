@@ -37,5 +37,5 @@ jobs:
     - name: Publish package
       uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
       with:
-        user: TucuAI
+        user: __token__
         password: pypi-AgEIcHlwaS5vcmcCJGY3ZDdlYWU4LWEzNDctNDljYi04MjZhLWUwM2I3MDE5OTJiNAACElsxLFsic3Bhcmt2ZXJzZSJdXQACLFsyLFsiZWY4Njc5OWYtMmQ2ZS00MmQwLThmODktNzAzOTk5YTJkODE2Il1dAAAGIDo-KwaiaM99TtqvvZgAFFi4yvQi6cI6Nyoub_lFPgN_ }}
