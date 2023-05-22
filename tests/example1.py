@@ -5,20 +5,22 @@ date: 19.05.2023
 email: Tucudean.Adrian.Ionut@outlook.com
 license: MIT
 """
-import cv2
+#pylint disable E0401
+#pylint disableE0611
 from sparkverse.simulator import Simulator
 from sparkverse.sensor import Camera,Lidar
-Simulator.hide_simulator_window()
-cam=Camera(Simulator.data,90)
-cam1=Camera(Simulator.data,0)
-lidar=Lidar(Simulator.data,0,30)
-#cam2=Camera(Simulator.data,270)
+import sparkverse.external_data as ex
+Simulator.hide_simulator_window()  #hide pygame window if you want
+Simulator.track(ex.LEVEL1)   #select maps ranging from LEVEL1 to LEVEL 7 
+                             #or just imput path to your png file
+CAM=Camera(simulator=Simulator.data,angle=0)  #camera object initialized
+#CAM1=Camera(simulator=Simulator.data,angle=0)
+LIDAR=Lidar(simulator=Simulator.data,angle=0,angular_resolution=50)
+
+
 while Simulator.isRunning :
-    frame=cam.read() #extract camera and map
-    frame1=cam1.read()
-    lidar1=lidar.read()
-    #print(frame1.shape)
-    #frame2=cam2.read()
-    #cv2.imshow("frame1",frame1)
-    #cv2.imshow("frame",frame)
-    Simulator.display()
+    frame=CAM.read() #extract camera 
+    #frame1=CAM1.read() #extract seccond camera
+    lidar1=LIDAR.read() #extract lidar measurement
+    """ your code here"""
+    Simulator.display() #display everything
