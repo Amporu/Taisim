@@ -1,4 +1,12 @@
+"""
+info:This module contains a collection of non categorizable functions
+autor: Tucudean Adrian-Ionut
+date: 22.05.2023
+email: Tucudean.Adrian.Ionut@outlook.com
+license: MIT
+"""
 import cv2
+
 #pylint: disable=E1101
 class Video:
     """class for reccording data"""
@@ -13,15 +21,13 @@ class Video:
     recorded=0
     reccording_flag=0
     @staticmethod
-    def setFormat(input):
+    def set_format(format_input):
         """
         set the format of the reccordings
         Parameters:
         input (int):
-        input=0 :  format will be .mp4
-        input=1 :  format will be .avi
+        format_input=0 :  format will be .mp4
+        format_input=1 :  format will be .avi
         """
-        if input==0:
-            fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-
-    
+        if format_input==0:
+            Video.fourcc = cv2.VideoWriter_fourcc(*'mp4v')
