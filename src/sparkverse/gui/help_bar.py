@@ -8,7 +8,8 @@ license: MIT
 # pylint: disable=too-few-public-methods
 import cv2
 #pylint: disable=E1101
-
+#pylint: disable=too-many-boolean-expressions
+#pylint: disable=too-many-arguments
 from ..components.video import Video
 class HelpBar():
     """class for controlling HelpBar menu"""

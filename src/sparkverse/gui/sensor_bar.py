@@ -7,7 +7,7 @@ license: MIT
 """
 import cv2
 #pylint: disable=E1101
-
+# pylint: disable=too-few-public-methods
 class SensorBar:
     """class to manage sensors"""
     show=1

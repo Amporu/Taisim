@@ -6,6 +6,8 @@ email: Tucudean.Adrian.Ionut@outlook.com
 license: MIT
 """
 #pylint: disable=E1101
+#pylint: disable=too-many-instance-attributes
+#pylint: disable=all
 import math
 import cv2
 import pygame
@@ -26,11 +28,12 @@ class VirtualSensor:
         y (int): y position of the car centroid
         angle (int): angle of the sensor (0 means front of the car)
         """
-        
-        if(sensor_type==1):
-            logger.info("virtual sensor <\033[38;2;255;165;0m%s\033[0m> added as \033[94mCAMERA\033[0m ",title)
-        if(sensor_type==2):
-            logger.info("virtual sensor <\033[38;2;255;165;0m%s\033[0m> added as \033[94mLIDAR\033[0m ",title)
+        if sensor_type==1 :
+            logger.info("sensor <\033[38;2;255;165;0m%s\033[0m> added as \033[94mCAMERA\033[0m",
+                        title)
+        if sensor_type==2 :
+            logger.info("sensor <\033[38;2;255;165;0m%s\033[0m> added as \033[94mLIDAR\033[0m",
+                        title)
         self.sensor_count=VirtualSensor.sensor_count
         SensorBar.sensor_count=self.sensor_count
         SensorBar.sensor_description.append(title)
