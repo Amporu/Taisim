@@ -11,6 +11,8 @@ import cv2
 import pygame
 import numpy as np
 #pylint: disable=E1101
+#pylint: disable=too-many-branches
+#pylint: disable=too-many-statements
 
 from sparkverse.gui.help_bar import HelpBar
 from sparkverse.gui.sensor_bar import SensorBar
@@ -203,7 +205,8 @@ class Utils:
         for i ,key in enumerate(num_keys):
             if keys[key]:
                 SensorBar.last_key=i+1
-                logger.info("<\033[38;2;255;165;0m%s\033[0m> : \033[92mSELECTED\033[0m",SensorBar.sensor_description[i])
+                logger.info("<\033[38;2;255;165;0m%s\033[0m> : \033[92mSELECTED\033[0m",
+                            SensorBar.sensor_description[i])
                 time.sleep(0.5)
         if keys[pygame.K_q]:#pylint: disable=E1101
             HelpBar.last_key=0
@@ -218,9 +221,9 @@ class Utils:
                 logger.info("RECCORDING : \033[91mDISABLED\033[0m")
         if keys[pygame.K_t]:#pylint: disable=E1101
             HelpBar.last_key=7
-            
+
             HelpBar.trail_flag=HelpBar.trail_flag^1
-            if (HelpBar.trail_flag==1):
+            if HelpBar.trail_flag==1:
                 logger.info("TRAIL : \033[92mENABLED\033[0m")
             else:
                 logger.info("TRAIL : \033[91mDISABLED\033[0m")
@@ -262,8 +265,5 @@ class Utils:
             Video.video_writer.release()
             Video.recorded=0
             Video.end_time=time.time()
-
-
-            #video_writer = cv2.VideoWriter(output_file, fourcc, fps, frame_size)
         if not moved:
             player_car.reduce_speed()
