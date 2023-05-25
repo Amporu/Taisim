@@ -5,6 +5,7 @@ date: 17.05.2023
 email: Tucudean.Adrian.Ionut@outlook.com
 license: MIT
 """
+# pylint: disable=too-few-public-methods
 import cv2
 #pylint: disable=E1101
 

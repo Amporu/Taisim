@@ -10,14 +10,15 @@ import sparkverse.external_data as ex
 import sparkverse.player as pl
 from sparkverse.utils import Utils
 from sparkverse.components.log import logger
-#pylint: disable=E1101
 
+#pylint: disable=E1101
 class Simulator(Utils):
     """simulator class"""
     logger.info("TRACK PRESET : \033[92mLEVEL1\033[0m")
     TRACK=pygame.image.load(ex.LEVEL1)
     WIDTH, HEIGHT = TRACK.get_width(), TRACK.get_height()
     WIN = pygame.display.set_mode((WIDTH, HEIGHT))#),pygame.NOFRAME | pygame.HIDDEN)
+    pygame.event.set_grab(True)
     TITLE=pygame.display.set_caption("Pygame SIMULATOR")
 
     isRunning = True
