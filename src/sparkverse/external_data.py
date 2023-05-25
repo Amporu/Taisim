@@ -7,8 +7,8 @@ license: MIT
 """
 import os
 from sparkverse.components.log import logger
-logger.info ("")
-
+VERSION='0.0.6'
+logger.info("VERSION : \033[92m%s\033[0m",VERSION)
 CAR    = os.path.join(os.path.dirname(__file__), 'data/player.png')
 LEVEL1 = os.path.join(os.path.dirname(__file__), 'data/LineFollower1.png')
 LEVEL2 = os.path.join(os.path.dirname(__file__), 'data/LineFollower2.png')

@@ -4,7 +4,7 @@ date: 20.05.2023
 email: Tucudean.Adrian.Ionut@outlook.com
 license: MIT
 """
-
+# pylint: disable=too-many-instance-attributes
 import math
 import pygame
 import sparkverse.external_data as ex

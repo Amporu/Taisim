@@ -31,3 +31,12 @@ class Video:
         """
         if format_input==0:
             Video.fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+    @staticmethod
+    def set_output_name(output):
+        """
+        set the format of the reccordings
+        Parameters:
+        input (int):
+        output : file output name
+        """
+        Video.output_file=output
