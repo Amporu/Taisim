@@ -12,7 +12,8 @@ import pygame
 import numpy as np
 #pylint: disable=E1101
 #pylint: disable=too-many-branches
-#pylintL disable=too-many-statements
+#pylint: disable=too-many-statements
+
 from sparkverse.gui.help_bar import HelpBar
 from sparkverse.gui.sensor_bar import SensorBar
 from sparkverse.components.video import Video
