@@ -6,7 +6,7 @@
     <img src="https://img.shields.io/badge/-Email-darkgreen?style=flat-square&logo=#0078D4&logoColor=black">
 </a>
 
-<a href="https://pypi.org/user/TucuAI/">
+<a href="[https://pypi.org/user/TucuAI/](https://static.pepy.tech/personalized-badge/sparkverse?period=total&units=abbreviation&left_color=black&right_color=orange&left_text=Downloads)">
     <img src="https://img.shields.io/badge/PyPi-TucuAI-blueviolet">
 </a>
 
@@ -73,7 +73,7 @@ from sparkverse.simulator import Simulator
 from sparkverse.sensor import Camera,Lidar
 import sparkverse.external_data as ex
 
-Simulator.hide_simulator_window()  #hide pygame window if you want
+#Simulator.hide_simulator_window()  #hide pygame window if you want (works only on Linux and MacOS
 Simulator.track(ex.LEVEL1)   #select maps ranging from LEVEL1 to LEVEL 7 or input path
 CAM=Camera("Front camera",0)
 CAM1=Camera("LEFT",90)
