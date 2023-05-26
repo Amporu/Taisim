@@ -18,7 +18,7 @@
 
 ![base_logo_transparent_background](/assets/customcolor_icon_transparent_background.png)
 
-Mirau is a Python-based simulator designed for testing and developing computer vision applications. With a primary focus on autonomous driving systems that rely on virtual sensor inputs, it provides a versatile platform for a variety of tasks, from lane keeping to complex navigation in agricultural environments.
+mir4u is a Python-based simulator designed for testing and developing computer vision applications. With a primary focus on autonomous driving systems that rely on virtual sensor inputs, it provides a versatile platform for a variety of tasks, from lane keeping to complex navigation in agricultural environments.
 
 ## Latest Release
 
@@ -40,7 +40,7 @@ Mirau is a Python-based simulator designed for testing and developing computer v
 ## Key Features
 
 ### Virtual Sensors and Map Interface: 
-  SparkVerse provides a simple interface to camera and map data, allowing you to easily integrate it with your computer vision algorithms.
+  mir4u provides a simple interface to camera and map data, allowing you to easily integrate it with your computer vision algorithms.
   * Virtual Cameras
   * Lidars
   * Ultrasonic sensors
@@ -51,7 +51,7 @@ In addition to default maps, SparkVerse allows for the import of custom maps. Th
 Simulator.track("path_to_your_image.png")
 ```
 ### Optimized & CrossPlatform: 
-Efficient performance on single-core computers makes SparkVerse accessible to a wide range of users and potentially suitable for real-time applications or embedded systems.
+Efficient performance on single-core computers makes mir4u accessible to a wide range of users and potentially suitable for real-time applications or embedded systems.
 Soo far was tested on:
 
 [![Linux](https://img.shields.io/badge/linux-black?style=for-the-badge&logo=Linux)](https://github.com/Amporu)
@@ -63,15 +63,15 @@ Soo far was tested on:
 ## Installation
 To install via `pip` use:
 ```sh
-pip install sparkverse #Python2.x
-pip3 install sparkverse #Python3.x
+pip install mir4u #Python2.x
+pip3 install mir4u #Python3.x
 ```
 ## Basic Usage
 The usage of the package is very easy. It does not require any initialisation. Just import and start coding:
 ```python
-from sparkverse.simulator import Simulator
-from sparkverse.sensor import Camera,Lidar
-import sparkverse.external_data as ex
+from mir4u.simulator import Simulator
+from mir4u.sensor import Camera,Lidar
+import mir4u.external_data as ex
 
 #Simulator.hide_simulator_window()  #hide pygame window if you want (works only on Linux and MacOS
 Simulator.track(ex.LEVEL1)   #select maps ranging from LEVEL1 to LEVEL 7 or input path
@@ -92,7 +92,7 @@ while Simulator.isRunning :
 ![base_logo_transparent_background](/assets/demo.gif)
 
 ## Simulator Examples
-Mirau is suitable for a range of computer vision applications, including but not limited to:
+mir4u is suitable for a range of computer vision applications, including but not limited to:
 
    * Lane Keeping: 
      Test and develop algorithms for keeping a vehicle within the boundaries of a lane.
