@@ -6,9 +6,9 @@ email: Tucudean.Adrian.Ionut@outlook.com
 license: MIT
 """
 
-from sparkverse.simulator import Simulator
-from sparkverse.sensor import Camera,Lidar
-import sparkverse.external_data as ex
+from tucu.simulator import Simulator
+from tucu.sensor import Camera,Lidar
+import tucu.external_data as ex
 
 Simulator.hide_simulator_window()  #hide pygame window if you want
 Simulator.track(ex.LEVEL1)   #select maps ranging from LEVEL1 to LEVEL 7 or input path

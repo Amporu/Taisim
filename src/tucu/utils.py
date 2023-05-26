@@ -14,11 +14,11 @@ import numpy as np
 #pylint: disable=too-many-branches
 #pylint: disable=too-many-statements
 
-from sparkverse.gui.help_bar import HelpBar
-from sparkverse.gui.sensor_bar import SensorBar
-from sparkverse.components.video import Video
-import sparkverse.external_data as ex
-from sparkverse.components.log import logger
+from tucu.gui.help_bar import HelpBar
+from tucu.gui.sensor_bar import SensorBar
+from tucu.components.video import Video
+import tucu.external_data as ex
+from tucu.components.log import logger
 class Utils:
     """a class where i dump yet non categorizable functions
 
