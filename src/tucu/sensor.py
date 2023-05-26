@@ -12,10 +12,10 @@ import math
 import cv2
 import pygame
 import numpy as np
-from sparkverse.utils import Utils,SensorBar
-from sparkverse.gui.help_bar import HelpBar
-from sparkverse.simulator import Simulator
-from sparkverse.components.log import logger
+from tucu.utils import Utils,SensorBar
+from tucu.gui.help_bar import HelpBar
+from tucu.simulator import Simulator
+from tucu.components.log import logger
 class VirtualSensor:
     """class to generalize sensors we use"""
     mask=np.array([])

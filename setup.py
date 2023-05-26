@@ -8,7 +8,7 @@ license: MIT
 
 import os
 from setuptools import setup, find_packages
-from src.sparkverse.external_data import VERSION
+#from src.tucu.external_data import VERSION
 here = os.path.abspath(os.path.dirname(__file__))
 #README = open(os.path.join(here, 'README-pypi.rst')).read()
 
@@ -22,17 +22,17 @@ install_requires = [
 ]
 
 
-setup(name='sparkverse',
-    version=VERSION,
+setup(name='tucu',
+    version='0.0.1',
     description="Simple python3 simulator for advance driving systems",
     keywords='Simulator computer vision Advanced Driving',
     author='Tucudean Adrian-Ionut',
-    author_email='Tucudean.Adrian.Ionut0@gmail.com',
+    author_email='Tucudean.Adrian.Ionut@outlook.com',
     url='https://github.com/Amporu/SparkVerse',
     license='MIT',
-    packages=find_packages('src','src/sparkverse/data'),
+    packages=find_packages('src','src/tucu/data'),
     package_dir = {'': 'src'},include_package_data=True,
-    package_data={'sparkverse':['data/*.png',"*.py"]},
+    package_data={'tucu':['data/*.png',"*.py"]},
     zip_safe=False,
     install_requires=['opencv-python','pygame'],
     classifiers=[
@@ -45,7 +45,7 @@ setup(name='sparkverse',
     ],
     entry_points={
     'console_scripts': [
-        'spark-verse = sparkverse:main',
+        'tucu = tucu:main',
     ],
 },
 )

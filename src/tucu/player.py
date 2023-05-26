@@ -7,9 +7,9 @@ license: MIT
 # pylint: disable=too-many-instance-attributes
 import math
 import pygame
-import sparkverse.external_data as ex
-from sparkverse.utils import Utils
-from sparkverse.components.log import logger
+import tucu.external_data as ex
+from tucu.utils import Utils
+from tucu.components.log import logger
 PLAYER=pygame.image.load(ex.CAR)
 START_POS = (180, 200)
 class CarProperties:

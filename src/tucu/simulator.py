@@ -6,10 +6,10 @@ email: Tucudean.Adrian.Ionut@outlook.com
 license: MIT
 """
 import pygame
-import sparkverse.external_data as ex
-import sparkverse.player as pl
-from sparkverse.utils import Utils
-from sparkverse.components.log import logger
+import tucu.external_data as ex
+import tucu.player as pl
+from tucu.utils import Utils
+from tucu.components.log import logger
 
 #pylint: disable=E1101
 class Simulator(Utils):
