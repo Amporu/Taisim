@@ -18,7 +18,7 @@
 
 ![base_logo_transparent_background](/assets/customcolor_icon_transparent_background.png)
 
-AtomSim is a Python-based simulator designed for testing and developing computer vision applications. With a primary focus on autonomous driving systems that rely on virtual sensor inputs, it provides a versatile platform for a variety of tasks, from lane keeping to complex navigation in agricultural environments.
+Tucu is a Python-based simulator designed for testing and developing computer vision applications. With a primary focus on autonomous driving systems that rely on virtual sensor inputs, it provides a versatile platform for a variety of tasks, from lane keeping to complex navigation in agricultural environments.
 
 ## Latest Release
 
@@ -40,7 +40,7 @@ AtomSim is a Python-based simulator designed for testing and developing computer
 ## Key Features
 
 ### Virtual Sensors and Map Interface: 
-  AtomSim provides a simple interface to camera and map data, allowing you to easily integrate it with your computer vision algorithms.
+  Tucu provides a simple interface to camera and map data, allowing you to easily integrate it with your computer vision algorithms.
   * Virtual Cameras
   * Lidars
   * Ultrasonic sensors
@@ -63,15 +63,15 @@ Soo far was tested on:
 ## Installation
 To install via `pip` use:
 ```sh
-pip install atomsim #Python2.x
-pip3 install atomsim #Python3.x
+pip install tucu #Python2.x
+pip3 install tucu #Python3.x
 ```
 ## Basic Usage
 The usage of the package is very easy. It does not require any initialisation. Just import and start coding:
 ```python
-from atomsim.simulator import Simulator
-from atomsim.sensor import Camera,Lidar
-import atomsim.external_data as ex
+from tucu.simulator import Simulator
+from tucu.sensor import Camera,Lidar
+import tucu.external_data as ex
 
 #Simulator.hide_simulator_window()  #hide pygame window if you want (works only on Linux and MacOS
 Simulator.track(ex.LEVEL1)   #select maps ranging from LEVEL1 to LEVEL 7 or input path
