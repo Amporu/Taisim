@@ -20,12 +20,14 @@ install_requires = [
     # http://packages.python.org/distribute/setuptools.html#declaring-dependencies
     'requests'	
 ]
-
+with open('README.md', 'r', encoding='utf-8') as f:
+    long_description = f.read()
 
 setup(name='tucu',
     version='0.0.1',
     description="Simple python3 simulator for advance driving systems",
-    long_description="Simple python3 simulator for advance driving systems",
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     keywords='Simulator computer vision Advanced Driving',
     author='Tucudean Adrian-Ionut',
     author_email='Tucudean.Adrian.Ionut@outlook.com',
