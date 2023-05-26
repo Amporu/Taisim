@@ -25,6 +25,7 @@ install_requires = [
 setup(name='tucu',
     version='0.0.1',
     description="Simple python3 simulator for advance driving systems",
+    long_description="Simple python3 simulator for advance driving systems",
     keywords='Simulator computer vision Advanced Driving',
     author='Tucudean Adrian-Ionut',
     author_email='Tucudean.Adrian.Ionut@outlook.com',
