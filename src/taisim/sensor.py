@@ -12,10 +12,13 @@ import math
 import cv2
 import pygame
 import numpy as np
-from tucu.utils import Utils,SensorBar
-from tucu.gui.help_bar import HelpBar
-from tucu.simulator import Simulator
-from tucu.components.log import logger
+from taisim.utils import Utils,SensorBar
+from taisim.gui.help_bar import HelpBar
+from taisim.simulator import Simulator
+from taisim.components.log import logger
+from taisim.external_data import COMPASS ,GPS
+COMPASS_IMAGE=pygame.image.load(COMPASS)
+GPS_IMAGE=pygame.image.load(GPS)
 class VirtualSensor:
     """class to generalize sensors we use"""
     mask=np.array([])
@@ -34,6 +37,12 @@ class VirtualSensor:
         if sensor_type==2 :
             logger.info("sensor <\033[38;2;255;165;0m%s\033[0m> added as \033[94mLIDAR\033[0m",
                         title)
+        if sensor_type==3:
+            logger.info("sensor <\033[38;2;255;165;0m%s\033[0m> added as \033[94mCOMPASS\033[0m",
+                        title)
+        if sensor_type==4:
+            logger.info("sensor <\033[38;2;255;165;0m%s\033[0m> added as \033[94mGPS\033[0m",
+                        title)
         self.sensor_count=VirtualSensor.sensor_count
         SensorBar.sensor_count=self.sensor_count
         SensorBar.sensor_description.append(title)
@@ -48,6 +57,100 @@ class VirtualSensor:
         self.fps=simulator[4]
         self.track=simulator[5]
         self.rotated_img=np.array([])
+class Compass(VirtualSensor):
+    """ class for compass handling"""
+    def __init__(self,title="compass"):
+        sim=Simulator.data()
+
+        super().__init__(simulator=sim,title=title,angle=0,sensor_type=3)
+
+        self.player=sim[1]
+
+    def read(self):
+        if self.sensor_count==0:
+            self.clock.tick(self.fps)
+
+            Utils.draw(self.win,self.player,self.track)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.flag = False
+                    break
+        angle=self.player.angle
+        angle=angle%360
+        if self.sensor_count==0:
+            Utils.move_player(self.player)
+
+        
+            frame = pygame.surfarray.array3d(pygame.display.get_surface())
+            frame=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
+            frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
+            Utils.frame=cv2.flip(frame,1)
+        frame=Utils.frame
+        h,w,c=frame.shape
+        x_1 = int(self.player.x_value + 20 * math.cos(math.radians(self.angle+angle+90)))
+        y_1 = int(self.player.y_value - 20 * math.sin(math.radians(self.angle+angle+90)))
+        x_2 = int(self.player.x_value + 20 * math.cos(math.radians(self.angle+angle+180)))
+        y_2 = int(self.player.y_value - 20 * math.sin(math.radians(self.angle+angle+180)))
+        x_3 = int(self.player.x_value + 20 * math.cos(math.radians(self.angle+angle+270)))
+        y_3 = int(self.player.y_value - 20 * math.sin(math.radians(self.angle+angle+270)))
+        x_4 = int(self.player.x_value + 20 * math.cos(math.radians(self.angle+angle)))
+        y_4 = int(self.player.y_value - 20 * math.sin(math.radians(self.angle+angle)))
+        cv2.line(frame,(x_1,y_1),(x_2,y_2),(255,0,0),2)
+        cv2.line(frame,(x_3,y_3),(x_4,y_4),(0,0,255),2)
+        cv2.line(frame,(x_1,y_1),(x_4,y_4),(255,0,0),2)
+        cv2.line(frame,(x_3,y_3),(x_2,y_2),(0,0,255),2)
+        #cv2.line(frame,(int(self.player.x_value),0),(int(self.player.x_value),h),(0,255,0),1)
+        #cv2.line(frame,(0,int(self.player.y_value)),(w,int(self.player.y_value)),(0,255,0),1)
+        Utils.sensor_frames[self.sensor_count+1]=frame
+        #self.win.blit(COMPASS_IMAGE,(0,0))
+        return self.player.angle
+class Gps(VirtualSensor):
+    """ class for gps handling"""
+    def __init__(self,title="compass"):
+        """compass initialization"""
+        sim=Simulator.data()
+        super().__init__(simulator=sim,title=title,angle=0,sensor_type=4)
+
+        self.player=sim[1]
+    def read(self):
+        self.win.blit(GPS_IMAGE,(self.pos_x-10,self.pos_y-10))
+        """Read gps data"""
+        if self.sensor_count==0:
+            self.clock.tick(self.fps)
+
+            Utils.draw(self.win,self.player,self.track)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.flag = False
+                    break
+        angle=self.player.angle
+        angle=angle%360
+        
+
+        if self.sensor_count==0:
+            Utils.move_player(self.player)
+            frame = pygame.surfarray.array3d(pygame.display.get_surface())
+            frame=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
+            frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
+            Utils.frame=cv2.flip(frame,1)
+        frame=Utils.frame
+        h,w,c=frame.shape
+        x_1 = int(self.player.x_value + 20 * math.cos(math.radians(self.angle+angle+90)))
+        y_1 = int(self.player.y_value - 20 * math.sin(math.radians(self.angle+angle+90)))
+        x_2 = int(self.player.x_value + 20 * math.cos(math.radians(self.angle+angle+180)))
+        y_2 = int(self.player.y_value - 20 * math.sin(math.radians(self.angle+angle+180)))
+        x_3 = int(self.player.x_value + 20 * math.cos(math.radians(self.angle+angle+270)))
+        y_3 = int(self.player.y_value - 20 * math.sin(math.radians(self.angle+angle+270)))
+        x_4 = int(self.player.x_value + 20 * math.cos(math.radians(self.angle+angle)))
+        y_4 = int(self.player.y_value - 20 * math.sin(math.radians(self.angle+angle)))
+        cv2.line(frame,(x_1,y_1),(x_2,y_2),(255,0,0),2)
+        cv2.line(frame,(x_3,y_3),(x_4,y_4),(0,0,255),2)
+        cv2.line(frame,(x_1,y_1),(x_4,y_4),(255,0,0),2)
+        cv2.line(frame,(x_3,y_3),(x_2,y_2),(0,0,255),2)
+        cv2.line(frame,(int(self.player.x_value),0),(int(self.player.x_value),h),(0,255,0),1)
+        cv2.line(frame,(0,int(self.player.y_value)),(w,int(self.player.y_value)),(0,255,0),1)
+        Utils.sensor_frames[self.sensor_count+1]=frame
+        return self.pos_x,self.pos_y
 class Camera(VirtualSensor):
     """ class for camera handling"""
 
@@ -74,20 +177,24 @@ class Camera(VirtualSensor):
         Track_image (Mat): the track of the simulator,
         camera_image (Mat): the camera perspective
         """
-        self.clock.tick(self.fps)
+        if self.sensor_count==0:
+            self.clock.tick(self.fps)
 
-        Utils.draw(self.win,self.player,self.track)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                self.flag = False
-                break
+            Utils.draw(self.win,self.player,self.track)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.flag = False
+                    break
         angle=self.player.angle
         angle=angle%360
-        Utils.move_player(self.player)
-        frame = pygame.surfarray.array3d(pygame.display.get_surface())
-        frame=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
-        frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
-        frame=cv2.flip(frame,1)
+            
+        if self.sensor_count==0:
+            Utils.move_player(self.player)
+            frame = pygame.surfarray.array3d(pygame.display.get_surface())
+            frame=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
+            frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
+            Utils.frame=cv2.flip(frame,1)
+        frame=Utils.frame
         Utils.x,Utils.y=int(self.player.x_value),int(self.player.y_value)
         x_1 = int(self.player.x_value + 20 * math.cos(math.radians(self.angle+angle+180)))
         y_1 = int(self.player.y_value - 20 * math.sin(math.radians(self.angle+angle+180)))
@@ -223,20 +330,24 @@ class Lidar(VirtualSensor):
         Track_image (Mat): the track of the simulator,
         lidar_data_array (numpy.array[]): the lidar measurememnt
         """
-        self.clock.tick(self.fps)
+        if self.sensor_count==0:
+            self.clock.tick(self.fps)
 
-        Utils.draw(self.win,self.player,self.track)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                self.flag = False
-                break
+            Utils.draw(self.win,self.player,self.track)
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.flag = False
+                    break
         angle=self.player.angle
         angle=angle%360
-        Utils.move_player(self.player)
-        frame = pygame.surfarray.array3d(pygame.display.get_surface())
-        frame=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
-        frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
-        frame=cv2.flip(frame,1)
+        
+        if self.sensor_count==0:
+            Utils.move_player(self.player)
+            frame = pygame.surfarray.array3d(pygame.display.get_surface())
+            frame=cv2.cvtColor(frame,cv2.COLOR_BGR2RGB)
+            frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
+            Utils.frame=cv2.flip(frame,1)
+        frame=Utils.frame
         Utils.x,Utils.y=int(self.player.x_value),int(self.player.y_value)
         lines=[]
         step=360/self.angular_resolution
@@ -251,10 +362,12 @@ class Lidar(VirtualSensor):
         y_p=[]
         x_lidar=[]
         y_lidar=[]
+        space=20
         mask_gray=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
         for i in range(self.angular_resolution):
-            x_p1 = self.player.x_value + 30 * math.cos(math.radians(lines[i]))
-            y_p1= self.player.y_value + 30 * math.sin(math.radians(lines[i]))
+
+            x_p1 = self.player.x_value + space * math.cos(math.radians(lines[i]))
+            y_p1= self.player.y_value + space * math.sin(math.radians(lines[i]))
             x_p.append(int(x_p1))
             y_p.append(int(y_p1))
             distance=0
@@ -283,6 +396,9 @@ class Lidar(VirtualSensor):
         if self.sensor_count==0:
             Utils.mask = frame.copy()
         for i in range(self.angular_resolution):
-            cv2.line(Utils.mask,(x_p[i],y_p[i]),(x_lidar[i],y_lidar[i]),(0,255,0),1)
+            cv2.circle(Utils.mask,(int(self.player.x_value),int(self.player.y_value)),space,(255,255,255),2)
+            if SensorBar.last_key==self.sensor_count+1:
+                cv2.circle(Utils.mask,(int(self.player.x_value),int(self.player.y_value)),space,(255,0,255),2)
+                cv2.line(Utils.mask,(x_p[i],y_p[i]),(x_lidar[i],y_lidar[i]),(0,255,0),1)
         return lidar_distance,lines
         

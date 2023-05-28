@@ -20,22 +20,21 @@ install_requires = [
     # http://packages.python.org/distribute/setuptools.html#declaring-dependencies
     'requests'	
 ]
-with open('README.rst', 'r', encoding='utf-8') as f:
-    long_description = f.read()
 
-setup(name='tucu',
+
+setup(name='taisim',
     version='0.0.1',
-    description="Simple python3 simulator for advance driving systems",
-    long_description=long_description,
-    long_description_content_type='text/x-rst',
+    description="Simple python3 simulator for advanced driving systems",
+    long_description="simple python simulator for advanced driving systems",
+    
     keywords='Simulator computer vision Advanced Driving',
     author='Tucudean Adrian-Ionut',
     author_email='Tucudean.Adrian.Ionut@outlook.com',
     url='https://github.com/Amporu/SparkVerse',
     license='MIT',
-    packages=find_packages('src','src/tucu/data'),
+    packages=find_packages('src','src/taisim/data'),
     package_dir = {'': 'src'},include_package_data=True,
-    package_data={'tucu':['data/*.png',"*.py"]},
+    package_data={'taisim':['data/*.png',"*.py"]},
     zip_safe=False,
     install_requires=['opencv-python','pygame'],
     classifiers=[
@@ -48,7 +47,7 @@ setup(name='tucu',
     ],
     entry_points={
     'console_scripts': [
-        'tucu = tucu:main',
+        'taisim = taisim:main',
     ],
 },
 )

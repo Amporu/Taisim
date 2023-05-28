@@ -6,7 +6,7 @@ email: Tucudean.Adrian.Ionut@outlook.com
 license: MIT
 """
 import os
-from tucu.components.log import logger
+from taisim.components.log import logger
 VERSION='0.0.1'
 logger.info("VERSION : \033[92m%s\033[0m",VERSION)
 CAR    = os.path.join(os.path.dirname(__file__), 'data/player.png')
@@ -17,7 +17,9 @@ LEVEL4 = os.path.join(os.path.dirname(__file__), 'data/LaneKeeper2.png')
 LEVEL5 = os.path.join(os.path.dirname(__file__), 'data/LaneKeeper3.png')
 LEVEL6 = os.path.join(os.path.dirname(__file__), 'data/Cropps1.png')
 LEVEL7 = os.path.join(os.path.dirname(__file__), 'data/Cropps2.png')
-LOGO   = os.path.join(os.path.dirname(__file__), 'data/logo1.png')
+LOGO   = os.path.join(os.path.dirname(__file__), 'data/logo.png')
+COMPASS= os.path.join(os.path.dirname(__file__), 'data/compass.png')
+GPS    = os.path.join(os.path.dirname(__file__), 'data/position.png')
 if os.path.exists(CAR) and os.path.exists(LEVEL1) and os.path.exists(LOGO):
     logger.info("ASSETS : \033[92mOK\033[0m")
     logger.info("TRACK : \033[92mOK\033[0m")

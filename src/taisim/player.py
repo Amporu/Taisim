@@ -7,9 +7,9 @@ license: MIT
 # pylint: disable=too-many-instance-attributes
 import math
 import pygame
-import tucu.external_data as ex
-from tucu.utils import Utils
-from tucu.components.log import logger
+import taisim.external_data as ex
+from taisim.utils import Utils
+from taisim.components.log import logger
 PLAYER=pygame.image.load(ex.CAR)
 START_POS = (180, 200)
 class CarProperties:

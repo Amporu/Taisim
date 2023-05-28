@@ -14,11 +14,11 @@ import numpy as np
 #pylint: disable=too-many-branches
 #pylint: disable=too-many-statements
 
-from tucu.gui.help_bar import HelpBar
-from tucu.gui.sensor_bar import SensorBar
-from tucu.components.video import Video
-import tucu.external_data as ex
-from tucu.components.log import logger
+from taisim.gui.help_bar import HelpBar
+from taisim.gui.sensor_bar import SensorBar
+from taisim.components.video import Video
+import taisim.external_data as ex
+from taisim.components.log import logger
 class Utils:
     """a class where i dump yet non categorizable functions
 
@@ -33,9 +33,11 @@ class Utils:
     sensor_frames = np.zeros((9,) + (480,640,3), dtype=np.uint8)
     first_window = np.ones((480, 640, 3), dtype=np.uint8)*255
     image=cv2.imread(ex.LOGO)
-
+    frame=np.array([])
+    lidar_flag=0
     #print(image.shape)
     image=cv2.resize(image,(640,480),cv2.INTER_AREA)
+    quit_flag=0
     font = cv2.FONT_HERSHEY_SIMPLEX   #pylint: disable=E1101
     """
     cv2.rectangle(first_window[0],(0,0),(200,50),(255,255,255),-1)
@@ -210,7 +212,9 @@ class Utils:
                 time.sleep(0.5)
         if keys[pygame.K_q]:#pylint: disable=E1101
             HelpBar.last_key=0
+            Utils.quit_flag==1
             pygame.quit()#pylint: disable=E1101
+            quit()
         if keys[pygame.K_r]:#pylint: disable=E1101
             HelpBar.last_key=2
             time.sleep(0.5)

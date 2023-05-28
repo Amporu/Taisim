@@ -6,10 +6,10 @@ email: Tucudean.Adrian.Ionut@outlook.com
 license: MIT
 """
 import pygame
-import tucu.external_data as ex
-import tucu.player as pl
-from tucu.utils import Utils
-from tucu.components.log import logger
+import taisim.external_data as ex
+import taisim.player as pl
+from taisim.utils import Utils
+from taisim.components.log import logger
 
 #pylint: disable=E1101
 class Simulator(Utils):
