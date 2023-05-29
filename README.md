@@ -70,21 +70,22 @@ pip3 install taisim #Python3.x
 The usage of the package is very easy. It does not require any initialisation. Just import and start coding:
 ```python
 from taisim.simulator import Simulator
-from taisim.sensor import Camera,Lidar
+from taisim.sensor import Camera,Lidar,Compass,Gps
 import taisim.external_data as ex
 
-#Simulator.hide_simulator_window()  #hide pygame window if you want (works only on Linux and MacOS
+#Simulator.hide_simulator_window()  #hide pygame window if you want
 Simulator.track(ex.LEVEL1)   #select maps ranging from LEVEL1 to LEVEL 7 or input path
-CAM=Camera("Front camera",0)
-CAM1=Camera("Left Camera",90)
-LIDAR=Lidar("Lidar",0,50)
-
+CAM=Camera(title="Front camera",angle=0).  #initialize virtual camera
+LIDAR=Lidar(title="Lidar",angle=0,angular_resolution=100) #initialize virtual lidar
+COMPASS=Compass(title="compass") #initialize virtual compass
+GPS=Gps(title="GPS").  #initialize virtual GPS
 while Simulator.isRunning :
     frame=CAM.read() #extract camera frame
-    frame1=CAM1.read()
-    DISTANCE,ANGLES=LIDAR.read() #extract lidar measurement
+    distance,angles=LIDAR.read() #extract lidar measurement
+    angle=COMPASS.read() #extract compass measurement
+    x,y=GPS.read()  #extract gps measurement
     """ your code here"""
-    Simulator.display() #display everything
+    Simulator.display() #display control panel
 ```
 
 
