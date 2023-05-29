@@ -42,9 +42,9 @@ Tucu is a Python-based simulator designed for testing and developing computer vi
 ### Virtual Sensors and Map Interface: 
   Tucu provides a simple interface to camera and map data, allowing you to easily integrate it with your computer vision algorithms.
   * Virtual Cameras
-  * Lidars
-  * Ultrasonic sensors
-  * Infrared sensors
+  * Virtual Lidars
+  * Virtual Ultrasonic sensors
+  * Virtual Infrared sensors
 ### Custom Map Imports: 
 In addition to default maps, SparkVerse allows for the import of custom maps. This flexibility facilitates testing across diverse environments and scenarios.
 ```python
@@ -63,8 +63,8 @@ Soo far was tested on:
 ## Installation
 To install via `pip` use:
 ```sh
-pip install tucu #Python2.x
-pip3 install tucu #Python3.x
+pip install taisim #Python2.x
+pip3 install taisim #Python3.x
 ```
 ## Basic Usage
 The usage of the package is very easy. It does not require any initialisation. Just import and start coding:
