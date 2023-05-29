@@ -16,7 +16,7 @@
 
 </p>
 
-![base_logo_transparent_background](/assets/customcolor_icon_transparent_background.png)
+![base_logo_transparent_background](/src/taisim/data/taisim.png)
 
 Tucu is a Python-based simulator designed for testing and developing computer vision applications. With a primary focus on autonomous driving systems that rely on virtual sensor inputs, it provides a versatile platform for a variety of tasks, from lane keeping to complex navigation in agricultural environments.
 
