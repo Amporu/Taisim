@@ -89,7 +89,7 @@ while Simulator.isRunning :
 
 
 
-![base_logo_transparent_background](/assets/demo.gif)
+![base_logo_transparent_background](/assets/Untitled%20Project.gif)
 
 ## Simulator Examples
 TAISIM is suitable for a range of computer vision applications, including but not limited to:
