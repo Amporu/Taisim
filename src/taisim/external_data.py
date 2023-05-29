@@ -17,7 +17,7 @@ LEVEL4 = os.path.join(os.path.dirname(__file__), 'data/LaneKeeper2.png')
 LEVEL5 = os.path.join(os.path.dirname(__file__), 'data/LaneKeeper3.png')
 LEVEL6 = os.path.join(os.path.dirname(__file__), 'data/Cropps1.png')
 LEVEL7 = os.path.join(os.path.dirname(__file__), 'data/Cropps2.png')
-LOGO   = os.path.join(os.path.dirname(__file__), 'data/logo.png')
+LOGO   = os.path.join(os.path.dirname(__file__), 'data/taisim_logo.png')
 COMPASS= os.path.join(os.path.dirname(__file__), 'data/compass.png')
 GPS    = os.path.join(os.path.dirname(__file__), 'data/position.png')
 if os.path.exists(CAR) and os.path.exists(LEVEL1) and os.path.exists(LOGO):
