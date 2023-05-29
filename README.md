@@ -76,7 +76,7 @@ import taisim.external_data as ex
 #Simulator.hide_simulator_window()  #hide pygame window if you want (works only on Linux and MacOS
 Simulator.track(ex.LEVEL1)   #select maps ranging from LEVEL1 to LEVEL 7 or input path
 CAM=Camera("Front camera",0)
-CAM1=Camera("LEFT",90)
+CAM1=Camera("Left Camera",90)
 LIDAR=Lidar("Lidar",0,50)
 
 while Simulator.isRunning :
