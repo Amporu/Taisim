@@ -18,15 +18,15 @@
 
 ![base_logo_transparent_background](/src/taisim/data/taisim.png)
 
-Tucu is a Python-based simulator designed for testing and developing computer vision applications. With a primary focus on autonomous driving systems that rely on virtual sensor inputs, it provides a versatile platform for a variety of tasks, from lane keeping to complex navigation in agricultural environments.
+TAISIM is a Python-based simulator designed for testing and developing computer vision applications. With a primary focus on autonomous driving systems that rely on virtual sensor inputs, it provides a versatile platform for a variety of tasks, from lane keeping to complex navigation in agricultural environments.
 
 ## Latest Release
 
 <p align="center">
     
-[![Downloads](http://pepy.tech/badge/sparkverse)](http://pepy.tech/project/sparkverse)
+[![Downloads](http://pepy.tech/badge/sparkverse)](http://pepy.tech/project/taisim)
     
-<a href="https://github.com/Amporu/SparkVerse/releases">
+<a href="https://github.com/Amporu/Taisim/releases">
     <img src="https://img.shields.io/badge/0%20.%200-.%203-blueviolet">
  
 <br/> 
@@ -92,7 +92,7 @@ while Simulator.isRunning :
 ![base_logo_transparent_background](/assets/demo.gif)
 
 ## Simulator Examples
-mir4u is suitable for a range of computer vision applications, including but not limited to:
+TAISIM is suitable for a range of computer vision applications, including but not limited to:
 
    * Lane Keeping: 
      Test and develop algorithms for keeping a vehicle within the boundaries of a lane.
@@ -102,3 +102,4 @@ mir4u is suitable for a range of computer vision applications, including but not
      Develop and evaluate navigation algorithms capable of finding a path through complex environments.
    * Agricultural Crop Following: 
    Ideal for tasks like crop identification, health monitoring, or autonomous navigation between crop rows.
+
