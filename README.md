@@ -69,9 +69,9 @@ pip3 install tucu #Python3.x
 ## Basic Usage
 The usage of the package is very easy. It does not require any initialisation. Just import and start coding:
 ```python
-from tucu.simulator import Simulator
-from tucu.sensor import Camera,Lidar
-import tucu.external_data as ex
+from taisim.simulator import Simulator
+from taisim.sensor import Camera,Lidar
+import taisim.external_data as ex
 
 #Simulator.hide_simulator_window()  #hide pygame window if you want (works only on Linux and MacOS
 Simulator.track(ex.LEVEL1)   #select maps ranging from LEVEL1 to LEVEL 7 or input path
