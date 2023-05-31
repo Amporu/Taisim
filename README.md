@@ -83,6 +83,12 @@ while Simulator.isRunning :
     distance,angles=LIDAR.read() #extract lidar measurement
     angle=COMPASS.read() #extract compass measurement
     x,y=GPS.read()  #extract gps measurement
+    ## movement
+    Simulator.control(linear_vel=1,angular_vel=5)
+    # liniar_vel and angular_Vel between [-5;5] 
+    # linear_vel logic: 0=stop , more=forward , less=backward 
+    # angular_vel logic: 0= forward , more=left, less=right
+    
     """ your code here"""
     Simulator.display() #display control panel
 ```
