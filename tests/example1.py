@@ -21,5 +21,6 @@ while Simulator.isRunning :
     distance,angles=LIDAR.read() #extract lidar measurement
     angle=COMPASS.read() #extract compass measurement
     x,y=GPS.read()  #extract gps measurement
+    
     """ your code here"""
     Simulator.display() #display control panel

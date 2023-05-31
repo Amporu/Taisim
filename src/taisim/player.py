@@ -10,7 +10,7 @@ import pygame
 import taisim.external_data as ex
 from taisim.utils import Utils
 from taisim.components.log import logger
-PLAYER=pygame.image.load(ex.CAR)
+PLAYER=Utils.scale_image(pygame.image.load(ex.CAR),0.5)
 START_POS = (180, 200)
 class CarProperties:
     """class for car properties"""
@@ -42,7 +42,7 @@ class CarProperties:
         elif right:
             self.angle -= self.rotation_vel
         Utils.rotation=self.angle % 360
-
+    
     def draw(self, win):
         """function to draw images
         Parameters:
@@ -104,7 +104,15 @@ class PlayerCar(CarProperties):
         """function to reduce speed"""
         self.vel = max(self.vel - self.acceleration / 2, 0)
         self.move()
-
+    def control(self,speed,rotation_vel):
+        """simpler"""
+        self.angle+=rotation_vel
+        if speed==0:
+            self.vel=0
+        self.vel = min(self.vel + speed, self.max_vel)
+        Utils.speed=self.vel
+        Utils.rotation=self.angle%360
+        self.move()
 def draw(win, player_car,background):
     """function to draw character and background"""
     win.blit(background,(0,0))
