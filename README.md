@@ -6,10 +6,12 @@
     <img src="https://img.shields.io/badge/-Email-darkgreen?style=flat-square&logo=#0078D4&logoColor=black">
 </a>
 
-<a href="[https://pypi.org/user/TucuAI/](https://static.pepy.tech/personalized-badge/sparkverse?period=total&units=abbreviation&left_color=black&right_color=orange&left_text=Downloads)">
+<a href="[https://pypi.org/user/TucuAI/](https://static.pepy.tech/personalized-badge/taisim?period=total&units=abbreviation&left_color=black&right_color=orange&left_text=Downloads)">
     <img src="https://img.shields.io/badge/PyPi-TucuAI-blueviolet">
 </a>
-
+<a href="https://www.udemy.com/course/simple-way-to-simulate-robots-in-python/?referralCode=A584726548C39FB196E4">
+    <img src="https://img.shields.io/badge/-Tutorial-red">
+</a>
 <br/> 
 
 
