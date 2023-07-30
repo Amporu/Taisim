@@ -2,6 +2,9 @@
 <a href="https://www.linkedin.com/in/adrian-ionu%C8%9B-%C8%9Bucudean-37aa59244">
     <img src="https://img.shields.io/badge/-LinkedIn-blue">
 </a>
+<a href="https://www.reddit.com/r/TAISIM/">
+    <img src="https://img.shields.io/badge/-Reddit-red">
+</a>
 <a href="mailto:Tucudean.Adrian.Ionut@outlook.com">
     <img src="https://img.shields.io/badge/-Email-darkgreen?style=flat-square&logo=#0078D4&logoColor=black">
 </a>
