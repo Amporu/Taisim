@@ -27,7 +27,7 @@ TAISIM is a Python-based simulator designed for testing and developing computer 
 
 <p align="center">
     
-[![Downloads](http://pepy.tech/badge/taisim)](http://pepy.tech/project/taisim)
+[![Downloads](https://static.pepy.tech/badge/taisim)](https://pepy.tech/project/taisim)
 <a href="https://github.com/Amporu/Taisim/releases">
     <img src="https://img.shields.io/badge/-0.1.0-important">
  
