@@ -212,7 +212,7 @@ class Utils:
                 time.sleep(0.5)
         if keys[pygame.K_q]:#pylint: disable=E1101
             HelpBar.last_key=0
-            Utils.quit_flag==1
+            Utils.quit_flag==1 #pylint:disable=C0303
             pygame.quit()#pylint: disable=E1101
             quit()
         if keys[pygame.K_r]:#pylint: disable=E1101

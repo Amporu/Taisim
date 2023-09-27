@@ -28,7 +28,6 @@ class CarProperties:
         self.angle = 0
         self.x_value, self.y_value = START_POS
         self.acceleration = 0.1
-
         logger.info("CAR : \033[92mOK\033[0m")
     def rotate(self, left=False, right=False):
         """function to rotate the car
@@ -42,14 +41,12 @@ class CarProperties:
         elif right:
             self.angle -= self.rotation_vel
         Utils.rotation=self.angle % 360
-    
     def draw(self, win):
         """function to draw images
         Parameters:
         win (pygameobj): imput window
         """
         Utils.blit_rotate_center(win, self.img, (self.x_value-4, self.y_value-2), self.angle)
-
     def move_forward(self):
         """function to translate the car forward"""
         self.vel = min(self.vel + self.acceleration, self.max_vel)
@@ -60,7 +57,6 @@ class CarProperties:
         self.vel = min(self.vel - self.acceleration*4, self.max_vel/2)
         Utils.speed=self.vel
         self.move()
-
     def bounce(self):
         """function to bounce the car in the oposite direction"""
         self.angle=abs(180-self.angle)
@@ -74,23 +70,19 @@ class CarProperties:
         self.vel = max(self.vel - self.acceleration, -self.max_vel/2)
         Utils.speed=self.vel
         self.move()
-
     def move(self):
         """function to move and rotate the car"""
         radians = math.radians(self.angle)
         vertical = math.cos(radians) * self.vel
         horizontal = math.sin(radians) * self.vel
-
         self.y_value -= vertical
         self.x_value -= horizontal
-
     def collide(self, mask, xpos=0, ypos=0):
         """colide method"""
         car_mask = pygame.mask.from_surface(self.img)
         offset = (int(self.x_value - xpos), int(self.y_value - ypos))
         poi = mask.overlap(car_mask, offset)
         return poi
-
     def reset(self):
         """reset method"""
         self.x_value, self.y_value = START_POS
